@@ -14,6 +14,52 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+## 开发计划
+
+
+### 利用微信开发者工具进行代码管理
+
+#### 克隆远程库至本地
+
+![用 Git 克隆远程库](vx_images/443943210259474.png)
+
+![克隆 v1.3.3 版本后](vx_images/534583610256029.png)
+
+#### 在微信开发者工具中导入远程仓库
+
+![导入远程库](vx_images/262063810251783.png)
+
+#### 打开版本管理
+
+![master 分支不修改](vx_images/127203910269663.png)
+
+![身份授权](vx_images/authorization.png)
+
+
+
+
+
+
+### 手搓单元测试
+
+#### 内置终端安装依赖
+
+`jest` 和 `miniprogram-simulate`
+
+#### 写测试文件
+
+新建 `xx.test.js`
+
+导出函数 `module.exports` 测试和才能在其他文件中测试
+
+`require` 引入文件
+
+`describe` 和 `it` 测试用例
+
+`package.json` 中添加 `scripts`
+
+### 内置测试模块：工具-自动化测试
+
 ## 其他
 
 ### Git flow
