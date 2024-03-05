@@ -1,0 +1,49 @@
+{
+  "usingComponents": {
+    "van-tabbar": "@vant/weapp/tabbar/index",
+    "van-tabbar-item": "@vant/weapp/tabbar-item/index",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-tag": "@vant/weapp/tag/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-cascader": "@vant/weapp/cascader/index",
+    "van-area": "@vant/weapp/area/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-picker": "@vant/weapp/picker/index",
+    "van-skeleton": "@vant/weapp/skeleton/index",
+    "van-grid": "@vant/weapp/grid/index",
+    "van-grid-item": "@vant/weapp/grid-item/index",
+    "van-card": "@vant/weapp/card/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-goods-action": "@vant/weapp/goods-action/index",
+    "van-goods-action-icon": "@vant/weapp/goods-action-icon/index",
+    "van-goods-action-button": "@vant/weapp/goods-action-button/index",
+    "van-search": "@vant/weapp/search/index"
+  },
+  "pages": [
+    "pages/home/home",
+    "pages/index/index",
+    "pages/login/login",
+    "pages/sign/sign",
+    "pages/my/my",
+    "pages/my/fill",
+    "pages/bedinfo/bedinfo",
+    "pages/search/search",
+    "pages/order/order",
+    "pages/detail/detail",
+    "pages/upload1/upload1"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "云旅百宿",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json"
+  
+}

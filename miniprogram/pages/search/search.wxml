@@ -1,0 +1,90 @@
+
+<view class="whole-container">
+  <view class="search-container">
+    <van-field class="picker-item" 
+      label="城市"
+      value="{{ selectedCity }}"
+      placeholder="请选择城市"
+      border="{{ false }}"
+      bind:focus="onCitySelect"
+    />
+    <van-field class="picker-item" 
+      label="学校"
+      value="{{ selectedUniv }}"
+      placeholder="请选择学校"
+      border="{{ false }}"
+      bind:focus="onUnivSelect"
+    />
+    <van-field class="picker-item" 
+      label="状态"
+      value="{{ selectedBusy }}"
+      placeholder="状态查询"
+      border="{{ false }}"
+      bind:focus="onBusySelect"
+    />
+    
+
+    <van-popup show="{{ showCityPicker }}" closeable position="bottom" bind:close="onCitySelectClose">
+      <van-picker columns="{{ uniqueCityOptions }}" bind:change="onCityChange"/>  
+    </van-popup>
+    <van-popup show="{{ showBusyPicker }}" closeable position="bottom" bind:close="onBusySelectClose">
+      <van-picker columns="{{ uniqueBusyOptions }}" bind:change="onBusyChange"/>  
+    </van-popup>
+    <van-popup show="{{ showUnivPicker }}" closeable position="bottom" bind:close="onUnivSelectClose">
+      <van-picker columns="{{ uniqueUnivOptions }}" bind:change="onUnivChange"/>  
+    </van-popup>
+  </view>
+
+
+  <!-- 按照 Liang BO 样式可成功展示 -->
+  <view class="view_contain">
+    <view class="view_block">
+      <van-row gutter="15">
+        <van-col span="12" wx:for="{{filteredBeds}}" wx:key="index" wx:for-item="item" wx:for-index="index" data-bedids-id="{{item._id}}" bindtap="goToDetail">
+          <!-- 每个 van-col 包含两个框格 -->
+          <view class="display-frame">
+            <!-- 第一个框格 -->
+            <image class="image" src="{{item.picture_add}}"></image>
+            <view class="text-info">
+              <van-col span="17">
+                <view class="main-name">{{item.city}}</view>
+                <view class="sub-name">{{item.university}}</view>
+              </van-col>
+              <van-col span="4">
+                <view class="like-info">
+                  <van-icon name="like-o" color='red' size="20px" info="{{item.likes_num}}" />
+                </view>
+              </van-col>
+            </view>
+          </view>
+        </van-col>
+      </van-row>
+    </view>
+  </view>
+
+  <!-- 按照 vant-card 样式可成功展示 -->
+  <!-- <view class="view_contain">
+    <view class="view_block">
+      <van-row gutter="15">
+        <view class="house-item" wx:for="{{ filteredBeds.length > 0 ? filteredBeds : beds }}" wx:key="index">
+          <van-card class="result-card"
+            tag="{{item.Is_busy ? '占用' : '空闲'}}"
+            desc="{{item.city}}"
+            title="{{item._id}}"
+            thumb="{{ item.picture_add }}"
+          />
+        </view>
+      </van-row>
+    </view>
+  </view> -->
+
+<!-- 下面这个不能删 是Page结束处 -->
+</view>
+
+
+
+
+
+
+
+

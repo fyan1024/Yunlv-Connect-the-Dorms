@@ -1,0 +1,25 @@
+<!--pages/upload/upload.wxml-->
+<van-cell-group class="ben_box" bindsubmit="submit">
+  <van-field value="{{university}}" required clearable focus clikable label="所在学校" icon="location-o" placeholder="请输入学校名称" data-name="university" bind:change="onChange" bind:click-icon="onClickIcon" />
+  <van-field value="{{ bed_num }}" required clearable label="床位编号" icon="edit" placeholder="请输入床位编号" data-name="bed_num" bind:change="onChange" bind:click-icon="onClickIcon" />
+  <van-field value="{{ dormitory_num }}" required clearable label="宿舍编号" icon="edit" placeholder="如三号楼1164宿舍写为3-1164" data-name="dormitory_num" bind:change="onChange" bind:click-icon="onClickIcon" />
+  <van-field value="{{ address }}" required clearable label="学校地址" icon="guide-o" placeholder="请输入学校地址" data-name="address" bind:change="onChange" bind:click-icon="onClickIcon" />
+  <van-field value="{{ announcements }}" clearable label="备注" type="textarea" icon="smile-comment-o" placeholder="请输入备注" data-name="announcements" bind:change="onChange" autosize border="{{ false }}" />
+  <van-cell title="选择日期区间" value="{{ date }}" bind:click="onDisplay" />
+  <van-calendar show="{{ show }}" type="range" show-confirm="{{ false }}" min-date="{{ minDate }}" max-date="{{ maxDate }}" max-range="{{ 5 }}" bind:close="onClose" bind:confirm="onConfirm" />
+</van-cell-group>
+
+<view class="avatar_box">
+  <image src="{{bedUrl}}" mode="" />
+  <view class="int">点击上传床铺照片</view>
+  <button class="bindchooseavatar" bindtap="onChoosepic">...</button>
+</view>
+
+<view>
+  <van-col span="8" offset="3">
+    <van-button plain type="primary" size="normal" form-type="submit" bindtap="uploadcontent">提交</van-button>
+  </van-col>
+  <van-col span="8" offset="3">
+    <van-button plain type="info" size="normal" bindtap="cancelsub">取消</van-button>
+  </van-col>
+</view>

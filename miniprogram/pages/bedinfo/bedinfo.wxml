@@ -1,0 +1,34 @@
+<!--pages/bedinfo/bedinfo.wxml-->
+<view class="view_contain">
+  <view class="pic">
+    <image class="image" mode='aspectFill' src="{{bedinfo.picture_add}}"></image>
+  </view>
+
+  <view class="info">
+    <van-cell-group title="基本信息">
+      <van-cell title="地址" value="{{bedinfo.address}}" />
+      <van-cell title="房间号" value="{{bedinfo.dormitory_num}}" />
+      <van-cell title="床号" value="{{bedinfo.bed_num}}" />
+      <van-cell title="宣传语" value="{{bedinfo.announcements}}" />
+    </van-cell-group>
+  </view>
+  <view class="otherinfo">
+    <van-grid>
+      <van-grid-item icon="contact-o" text="房主：" />
+      <van-grid-item icon="star-o" text="评分：{{bedinfo.rate}}" />
+      <van-grid-item icon="photo-o" text="文字" />
+      <van-grid-item icon="photo-o" text="文字" />
+    </van-grid>
+  </view>
+
+  <view class="block">
+  
+  </view>
+
+  <van-goods-action>
+    <van-goods-action-icon icon="chat-o" text="联系床主" bind:click="onClickIcon1" />
+    <van-goods-action-icon icon="cart-o" text="我的收藏" bind:click="onClickIcon2" />
+    <van-goods-action-button text="加入收藏" type="warning" bind:click="onClickButton1" />
+    <van-goods-action-button text="立即预定" bind:click="onClickButton2" />
+  </van-goods-action>
+</view>

@@ -1,0 +1,1 @@
+"E:\小程序开发者工具\微信web开发者工具\cli.bat" cloud functions deploy --e cloud-5gmckv7pc5b45d18 --n quickstartFunctions --r --project "E:\abibili\登录注册功能" --report_first --report

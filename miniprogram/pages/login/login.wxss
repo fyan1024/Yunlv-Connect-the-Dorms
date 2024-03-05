@@ -1,0 +1,57 @@
+/* pages/login/login.wxss */
+Page {
+  background-color: #fff;
+}
+
+.login_box {
+  margin: 200rpx 40rpx 0rpx 40rpx;
+}
+
+.introduce_box .title{
+  font-weight: bold;
+  font-size: 20pt;
+  background-color: #fff;margin-bottom: 10rpx;
+}
+.introduce_box .detail{
+  color: #7f7f7f;
+  font-size: 10pt;
+}
+
+.user_box{
+  margin-top: 100rpx;
+}
+
+.user_box .item{
+  margin-bottom: 30rpx;
+  border-bottom: 1rpx solid gray;
+  padding: 10rpx;
+}
+.user_box .item .title{
+  font-weight: bold;
+  margin-bottom: 8rpx;
+}
+
+.sign , .versign_box{
+  margin-top: 80rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sign .title{
+  font-weight: bold;
+  font-size: 9pt;
+}
+.sign .go_sign{
+  padding: 3rpx;
+  color: #0066FF;
+  border-bottom: 1rpx solid gray;
+}
+
+.versign_box{
+  position: fixed;
+  width: 100%;
+  bottom: 40rpx;
+  color: #7f7f7f;
+  font-size: 9pt;
+}

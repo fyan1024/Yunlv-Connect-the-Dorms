@@ -1,0 +1,68 @@
+/* pages/my/my.wxss */
+page {
+  width: 100%;
+  height: 100%;
+}
+
+.view_contain {
+  width: 100%;
+  height: 100%;
+  background: rgba(250, 231, 179, 0.795)
+}
+
+/* 第一部分 */
+
+.view_1 {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 400rpx;
+  background: rgba(100, 150, 243, 0.87);
+}
+
+.view_image_text {
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  /* flex-direction: column; */
+  /* align-items: center; */
+  color: white;
+  margin-left: 50rpx;
+  margin-top: 200rpx;
+}
+
+.uname {
+  display: flex;
+  flex-direction: column;
+  margin-left: 45rpx;
+
+  /* align-items: center; */
+  margin-top: 60rpx;
+}
+
+.view_info {
+  height: 100%;
+  width: 100%;
+  margin-left: 5rpx;
+  border-radius: 100px;
+}
+
+.cancle {
+  position: fixed;
+  width: 100%;
+  bottom: 150rpx;
+  text-align: center;
+  color: #7f7f7f;
+  font-size: 10pt;
+}
+
+.grid {
+  margin-top: 20rpx;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+  width: 90%;
+  bottom: 150rpx;
+  text-align: center;
+  color: #7f7f7f;
+  font-size: 10pt;
+}
