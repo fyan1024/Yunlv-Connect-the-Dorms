@@ -1,7 +1,4 @@
 # Yunlv-Connect-the-Dorms
- 
-<!-- START doctoc -->
-<!-- END doctoc -->
 
 ## 开发计划
 
