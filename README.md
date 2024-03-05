@@ -1,6 +1,8 @@
 # Yunlv-Connect-the-Dorms
 
-[toc]
+<!-- START doctoc -->
+<!-- END doctoc -->
+
 
 ![Git Flow 流程图](images/GitFlow.jpg)
 
