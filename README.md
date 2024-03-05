@@ -46,14 +46,25 @@
 
 ![身份授权](vx_images/authorization.png)
 
-#### 拉取远程 Dev 分支
-
+#### 拉取/拉取远程 Dev 分支
 
 ![拉取Dev](vx_images/47960111264769.png)
 
-
 #### 修改后提交到本地 main 分支
 
+![](vx_images/33222812257132.png)
+
+
+#### Git 账号初始化
+
+进入[微信开发项目 Dashboard](https://git.weixin.qq.com/dashboard/projects)初始化 Git 账号
+
+
+
+
+#### 推送到新的 feature 分支
+
+![](vx_images/336853012250266.png)
 
 ### 手搓单元测试
 
@@ -100,7 +111,7 @@
 ### Reference
 
 1. [利用GitHub Actions自动为README添加TOC目录](https://wiki.eryajf.net/pages/226388/)
-2. 2 
+2. [在小程序Web开发工具中使用Git做版本管理](https://help.gitee.com/enterprise/miniapp/在小程序Web开发工具中使用Git做版本管理)
 
 
 
