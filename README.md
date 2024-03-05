@@ -2,6 +2,14 @@
 
 ![Git Flow 流程图](images/GitFlow.jpg)
 
-![Git Flow](images/186183809240346.jpg)
+## 如何更新仓库
 
-添加xxx功能的时候，先从dev分支拉代码，然后新建feature-xxx分支上传代码
+### 在本地克隆远程库
+
+![克隆仓库](images/CloneRepository.png)
+
+### 从dev开发分支Fetch origin拉取远程仓库
+
+![fetch origin](images/FetchOrigin.png)
+
+
