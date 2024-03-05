@@ -1,0 +1,23 @@
+<!--pages/my/fill.wxml-->
+<text>填写个人信息</text>
+<view>
+  <van-cell-group>
+    <van-field label="性别" value='{{User_gender}}' placeholder="请输入性别" border="{{ false }}" bind:click-input="showPopup" data-name="User_gender" />
+    <van-field label="地区" value='{{Location}}' placeholder="请输入地区" border="{{ false }}" bind:change="onChange" data-name="Location"/>
+    <van-field label="学校" value='{{University}}' placeholder="请输入学校" border="{{ false }}" bind:change="onChange" data-name="University"/>
+    <van-field label="手机" value='{{user.phone}}' disabled border="{{ false }}"/>
+  </van-cell-group>
+
+  <view class="button">
+    <van-col span="8" offset="5">
+      <van-button form-type="submit" plain type="primary" bindtap="submit">提交</van-button>
+    </van-col>
+    <van-col span="10" offset="1">
+      <van-button plain type="default" bindtap="cancelsub">取消</van-button>
+    </van-col>
+  </view>
+</view>
+
+<van-popup show="{{ show }}" position="top"  bind:close="onClose">
+  <van-picker columns="{{ columns }}" bind:change="onChangePop" />
+</van-popup>

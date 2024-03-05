@@ -1,0 +1,102 @@
+/* pages/search/search.wxss */
+
+page{
+  height:100%
+}
+
+.whole-container {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: #FAE7B3;
+}
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  
+  width: 100%;
+
+  padding-top: 14rpx;
+  padding-bottom: 6rpx;
+
+  /* background-color: chartreuse; */
+}
+
+.picker-item {
+  margin-top: 8rpx;
+  margin-bottom: 8rpx;
+  width: 90%;
+}
+
+.van-cell{
+  border-radius: 20rpx;
+}
+
+/* 以上是搜索区域，以下是按照 Liang Bo 的样式重构的 filter 区域样式代码 */
+
+.view_contain {
+  width: 100%;
+  background: rgba(250, 231, 179, 0.795)
+}
+
+.view_block {
+  width: 90%;
+  margin-left: 5%;
+  /* margin-top: 40%; */
+  margin-bottom: 20%;
+  background: rgba(250, 231, 179, 0.795)
+}
+
+.display-frame {
+  width: 100%;
+  border-radius: 10px;
+  /* 圆角化处理 */
+  overflow: hidden;
+  /* 避免圆角被图片溢出 */
+  background-color: #f0f0f0;
+  /* 背景颜色，可以根据需要调整 */
+  margin-top: 5%;
+}
+
+.image {
+  width: 100%;
+  height: 100px;
+  /* 调整图片展示区域的高度 */
+  border-radius: 10px 10px 0 0;
+  /* 圆角化处理，使图片上半部分有圆角 */
+}
+
+.summary {
+  margin-top: 10px;
+  /* 调整摘要信息区域与图片展示区域的间距 */
+  font-size: 14px;
+  color: #333;
+}
+
+.text-info {
+  flex: 1;
+  /* 新增属性 */
+}
+
+
+.main-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.sub-name {
+  display: flex;
+  font-size: 12px;
+  align-items: center;
+}
+
+.like-info {
+  font-size: 14px;
+  color: #666;
+  margin-top: 10px;
+  margin-left: 00px;
+}
+

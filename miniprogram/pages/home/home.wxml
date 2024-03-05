@@ -1,0 +1,46 @@
+<!--pages/home/home.wxml-->
+<van-tabbar active="{{ active }}" bind:change="onChange">
+  <van-tabbar-item name="home" icon="home-o" url="/pages/home/home">首页</van-tabbar-item>
+  <!-- <van-tabbar-item name="index" icon="search">标签</van-tabbar-item> -->
+  <van-tabbar-item name="my" icon="friends-o" url="/pages/my/my">个人</van-tabbar-item>
+</van-tabbar>
+<view class="search">
+  <van-search value="{{ value }}" placeholder="点击此处开始搜索" disabled bindtap="goToSearch" />
+</view>
+
+<van-button plain hairline type="primary" block color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="goToUploadBedPage">上传床位</van-button>
+
+<view class="view_contain">
+  <view class="view_block">
+    <!-- <view wx:for="{{[0, 1, 2]}}" wx:key="index">
+      <van-row gutter="15">
+        <van-col span="12" wx:for="{{[0, 1]}}" wx:key="index">
+          <view class="display-frame">
+            <image class="image" src="{{topProducts[item].Picture_url}}"></image>
+            <view class="summary">{{'name'}}</view>
+          </view>
+        </van-col>
+      </van-row>
+    </view> -->
+    <van-row gutter="15">
+      <van-col span="12" wx:for="{{topProducts}}" wx:key="index" wx:for-item="item" wx:for-index="index">
+        <!-- 每个 van-col 包含两个框格 -->
+        <view class="display-frame" data-beds-id="{{item._id}}"  bindtap="goToDetail">
+          <!-- 第一个框格 -->
+          <image class="image" src="{{item.picture_add}}"></image>
+          <view class="text-info">
+            <van-col span="17">
+              <view class="main-name">{{item.city}}</view>
+              <view class="sub-name">{{item.university}}</view>
+            </van-col>
+            <van-col span="4">
+              <view class="like-info">
+                <van-icon name="like-o" color='red' size="20px" info="{{item.likes_num}}" />
+              </view>
+            </van-col>
+          </view>
+        </view>
+      </van-col>
+    </van-row>
+  </view>
+</view>

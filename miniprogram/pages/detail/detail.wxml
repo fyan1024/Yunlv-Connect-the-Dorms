@@ -1,0 +1,14 @@
+<!--pages/detail/detail.wxml-->
+<van-row>
+  <van-col span="" offset="1">
+    <van-image width="20rem" height="15rem" fit="contain" src="{{imageUrl}}" />
+  </van-col>
+</van-row>
+<view class="info">
+  <van-cell-group title="基本信息">
+    <van-cell title="完成时间" value="{{orderinfo[0].Completion_time}}" />
+    <van-cell title="创建时间" value="{{orderinfo[0].Generation_time}}" />
+    <van-cell title="状态" value="{{orderinfo[0].status}}" />
+    <van-cell title="评价" value="{{orderinfo[0].Evaluation}}" />
+  </van-cell-group>
+</view>

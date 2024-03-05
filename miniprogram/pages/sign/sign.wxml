@@ -1,0 +1,53 @@
+<!-- 用户注册信息 -->
+
+<!-- 
+头像 avatarUrl
+昵称 nickName
+手机号 phone
+姓名 name
+密码 passWord
+ -->
+
+<view class="user_box">
+  <view class="avatar_box">
+    <image src="{{avatarUrl}}" mode="aspectFill" />
+    <view class="int">点击上传头像</view>
+    <button class="bindchooseavatar" bindchooseavatar="onChooseAvatar" open-type="chooseAvatar">...</button>
+  </view>
+
+  <form class="submit" bindsubmit="submit">
+    <view class="item">
+      <image src="/images/my.png" mode="" />
+      <input placeholder="请输入昵称" name="nickName" type="nickname" />
+    </view>
+
+    <view class="item">
+      <image src="/images/my.png" mode="" />
+      <input placeholder="请输入用户名" name="name" type="text" />
+    </view>
+
+
+    <view class="item">
+      <image src="/images/my.png" mode="" />
+      <input placeholder="请输入手机号" name="phone" type="safe-password" />
+    </view>
+
+    <view class="item">
+      <image src="/images/sock.png" mode="" />
+      <input placeholder="请输入密码" name="passWord" type="password" />
+    </view>
+
+    <view class="item">
+      <image src="/images/sock.png" mode="" />
+      <input placeholder="确认密码" name="con_passWord" type="password" />
+    </view>
+
+    <button form-type="submit" style="margin-top: 80rpx;" type="primary">注册</button>
+  </form>
+
+  <view class="back_box">
+    <view class="title">已有账号?去 </view>
+    <text bindtap="back" class="back">登录</text>
+  </view>
+
+</view>
