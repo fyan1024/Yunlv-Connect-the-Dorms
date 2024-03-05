@@ -10,17 +10,30 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+## 其他
+
+### Git flow
 
 ![Git Flow 流程图](images/GitFlow.jpg)
 
-## 如何更新仓库
+### 如何在 Github Desktop 进行代码管理
 
-### 在本地克隆远程库
+#### 在本地克隆远程库
 
 ![克隆仓库](images/CloneRepository.png)
 
-### 从dev开发分支Fetch origin拉取远程仓库
+#### 从dev开发分支Fetch origin拉取远程仓库
 
 ![fetch origin](images/FetchOrigin.png)
+
+
+### Reference
+
+1. [利用GitHub Actions自动为README添加TOC目录](https://wiki.eryajf.net/pages/226388/)
+2. 2 
+
+
+
+
 
 
