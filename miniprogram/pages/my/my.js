@@ -26,24 +26,29 @@ Page({
     if (userInfo) {
       // 获取云数据库引用
       const db = wx.cloud.database();
-      const usersCollection = db.collection('User'); // 假设你的集合名称为 'User'
 
-      // 查询对应用户名的用户信息
-      usersCollection.where({
-        User_name: userInfo.User_name
-      }).get().then(res => {
-        // 获取查询结果
-        const userData = res.data;
-        if (userData.length > 0) {
-          // 将从云端数据库中获取到的用户信息更新到页面的 user 中
-          this.setData({
-            user: userData[0] // 假设返回的结果为一个数组，取第一个元素作为用户信息
-          });
-        } else {
-          console.error('未找到对应的用户信息');
+      wx.cloud.callFunction({
+        name: "search", //必须和云函数名称一样
+        data: {
+          title: 'User_name',
+          value: userInfo.User_name,
+          name: 'User'
+        },
+        success: (res) => {
+          console.log('请求成功', res)
+          const userData = res.result.data;
+          if (userData.length > 0) {
+            // 将从云端数据库中获取到的用户信息更新到页面的 user 中
+            this.setData({
+              user: userData[0] // 假设返回的结果为一个数组，取第一个元素作为用户信息
+            });
+          } else {
+            console.error('未找到对应的用户信息');
+          }
+        },
+        fail(res) {
+          console.log('请求错误', res)
         }
-      }).catch(err => {
-        console.error('查询用户信息失败', err);
       });
     } else {
       console.error('未找到本地缓存的用户信息');
