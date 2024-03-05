@@ -44,9 +44,13 @@
 
 ![身份授权](vx_images/authorization.png)
 
+#### 拉取远程 Dev 分支
 
 
+![拉取Dev](vx_images/47960111264769.png)
 
+
+#### 修改后提交到本地 main 分支
 
 
 ### 手搓单元测试
