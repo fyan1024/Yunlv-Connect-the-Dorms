@@ -26,6 +26,11 @@
 
 ![fetch origin](images/FetchOrigin.png)
 
+#### Commit to `dev` 提交代码
+
+![修改summary](images/UpdateSummary.png)
+
+![commit to dev](images/PushOrigin.png)
 
 ### Reference
 
