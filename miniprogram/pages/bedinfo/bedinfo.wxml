@@ -4,7 +4,7 @@
     <image class="image" mode='aspectFill' src="{{bedinfo.picture_add}}"></image>
   </view>
 
-  <view class="info">
+  <view class="basic-info">
     <van-cell-group title="基本信息">
       <van-cell title="地址" value="{{bedinfo.address}}" />
       <van-cell title="房间号" value="{{bedinfo.dormitory_num}}" />
@@ -12,7 +12,18 @@
       <van-cell title="宣传语" value="{{bedinfo.announcements}}" />
     </van-cell-group>
   </view>
-  <view class="otherinfo">
+
+  <!-- 纬度在前，经度在后 -->
+  <map id="map"
+    class="map"
+    markers="{{markers}}"
+    longitude="{{longitude}}" latitude="{{latitude}}"
+    style="width:100%;height: 500rpx;"
+    scale="{{scale}}"
+    bindmarkertap="onMarkerTap">
+  </map>
+
+  <view class="other-info">
     <van-grid>
       <van-grid-item icon="contact-o" text="房主：" />
       <van-grid-item icon="star-o" text="评分：{{bedinfo.rate}}" />
@@ -22,7 +33,6 @@
   </view>
 
   <view class="block">
-  
   </view>
 
   <van-goods-action>

@@ -3,7 +3,7 @@
   <view class="view_block">
     <van-row gutter="15">
       <view class="order-item" wx:for="{{dataObj}}" wx:key="index">
-        <van-card class="order-card" tag="{{item.university}}" desc="{{item.time}}" title="床位号：{{item.Bed_id}}" thumb="{{ item.picture_add }}" data-order-id="{{item._id}}" bindtap="goToDetail">
+        <van-card class="order-card" tag="{{item.university}}" desc="{{item.time}}" title="床位号：{{item.Bed_id}}" thumb="{{ item.picture_add }}" bindtap="goToDetail">
           <view slot="footer" style="display: flex; justify-content: flex-end;">
             <van-button size="mini">完成订单</van-button>
             <van-button size="mini">取消订单</van-button>

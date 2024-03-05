@@ -26,11 +26,11 @@ Page({
     })
   },
 
-  goToDetail(event) {
-    const orderId = event.currentTarget.dataset.orderId;
-    console.log(orderId)
+  goToDetail() {
+    const order = this.data.dataObj[0]._id
+    console.log(order)
     wx.navigateTo({
-      url: `/pages/detail/detail?id=${orderId}`,
+      url: `/pages/detail/detail?id=${order}`,
     });
   },
 
