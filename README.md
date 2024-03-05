@@ -28,43 +28,21 @@
 ## 开发计划
 
 
-### 利用微信开发者工具进行代码管理
+### 如何在 Github Desktop 进行代码管理
 
-#### 克隆远程库至本地
+#### 在本地克隆远程库
 
-![用 Git 克隆远程库](vx_images/443943210259474.png)
+![克隆仓库](images/CloneRepository.png)
 
-![克隆 v1.3.3 版本后](vx_images/534583610256029.png)
+#### 从dev开发分支Fetch origin拉取远程仓库
 
-#### 在微信开发者工具中导入远程仓库
+![fetch origin](images/FetchOrigin.png)
 
-![导入远程库](vx_images/262063810251783.png)
+#### Commit to `dev` 提交代码
 
-#### 打开版本管理
+![修改summary](images/UpdateSummary.png)
 
-![master 分支不修改](vx_images/127203910269663.png)
-
-![身份授权](vx_images/authorization.png)
-
-#### 拉取/拉取远程 Dev 分支
-
-![拉取Dev](vx_images/47960111264769.png)
-
-#### 修改后提交到本地 main 分支
-
-![](vx_images/33222812257132.png)
-
-
-#### Git 账号初始化
-
-进入[微信开发项目 Dashboard](https://git.weixin.qq.com/dashboard/projects)初始化 Git 账号
-
-
-
-
-#### 推送到新的 feature 分支
-
-![](vx_images/336853012250266.png)
+![commit to dev](images/PushOrigin.png)
 
 ### 手搓单元测试
 
@@ -92,21 +70,7 @@
 
 ![Git Flow 流程图](images/GitFlow.jpg)
 
-### 如何在 Github Desktop 进行代码管理
 
-#### 在本地克隆远程库
-
-![克隆仓库](images/CloneRepository.png)
-
-#### 从dev开发分支Fetch origin拉取远程仓库
-
-![fetch origin](images/FetchOrigin.png)
-
-#### Commit to `dev` 提交代码
-
-![修改summary](images/UpdateSummary.png)
-
-![commit to dev](images/PushOrigin.png)
 
 ### Reference
 
