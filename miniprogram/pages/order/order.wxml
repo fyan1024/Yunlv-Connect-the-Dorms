@@ -1,15 +1,88 @@
 <!--pages/order/order.wxml-->
-<view class="view_contain">
-  <view class="view_block">
-    <van-row gutter="15">
-      <view class="order-item" wx:for="{{dataObj}}" wx:key="index">
-        <van-card class="order-card" tag="{{item.university}}" desc="{{item.time}}" title="床位号：{{item.Bed_id}}" thumb="{{ item.picture_add }}" bindtap="goToDetail">
-          <view slot="footer" style="display: flex; justify-content: flex-end;">
-            <van-button size="mini">完成订单</van-button>
-            <van-button size="mini">取消订单</van-button>
+<van-tabs active="{{ active }}" bind:change="onChange">
+  <!-- 1.待归还页面 -->
+  <van-tab title="待归还">
+    <view class="view_contain">
+      <view class="view_block">
+        <van-row gutter="15">
+          <view class="order-item" wx:for="{{dataObj}}"  wx:key="index">
+            <block wx:if="{{item.status === 'To be returned'&& userId === item.User_id}}">
+              <van-card class="order-card" tag="{{item.university}}" desc="{{item.time}}" title="床位号：{{item.Bed_id}}" thumb="{{ item.picture_add }}" data-order-id="{{item._id}}" catchtap="goToDetail">
+              </van-card>
+              </block>
           </view>
-        </van-card>
+        </van-row>
       </view>
-    </van-row>
-  </view>
-</view>
+    </view>
+  </van-tab>
+
+
+  <!-- 2.待使用页面 -->
+  <van-tab title="待使用">
+    <view class="view_contain">
+      <view class="view_block">
+        <van-row gutter="15">
+          <view class="order-item" wx:for="{{dataObj}}" wx:key="index">
+            <block wx:if="{{item.user_status === 'To be used'&& userId === item.user_id}}">
+              <van-card class="order-card" tag="{{item.university}}" desc="{{item.time}}" title="床位号：{{item.Bed_id}}" thumb="{{ item.picture_add }}" data-order-id="{{item._id}}" catchtap="goToDetail">
+                <view slot="footer" style="display: flex; justify-content: flex-end;">
+                  <van-button size="mini" data-order-id="{{item._id}}" catchtap="completeOrder">完成订单</van-button>
+                  <van-button size="mini" data-order-id="{{item._id}}" catchtap="cancelOrder">取消订单</van-button>
+                </view>
+              </van-card>
+            </block>
+          </view>
+        </van-row>
+      </view>
+    </view>
+  </van-tab>
+
+
+  <!-- 3.已归还页面 -->
+  <van-tab title="已归还">
+    <view class="view_contain">
+      <view class="view_block">
+        <van-row gutter="15">
+          <view class="order-item" wx:for="{{dataObj}}" wx:key="index">
+            <block wx:if="{{item.status === 'returned'&& userId === item.User_id}}">
+              <van-card class="order-card" tag="{{item.university}}" desc="{{item.time}}" title="床位号：{{item.Bed_id}}" thumb="{{ item.picture_add }}" data-order-id="{{item._id}}" catchtap="goToDetail">
+              </van-card>
+            </block>
+          </view>
+        </van-row>
+      </view>
+    </view>
+  </van-tab>
+
+
+  <!-- 4.已使用页面 -->
+  <van-tab title="已使用">
+    <view class="view_contain">
+      <view class="view_block">
+        <van-row gutter="15">
+          <view class="order-item" wx:for="{{dataObj}}" wx:key="index">
+            <block wx:if="{{item.user_status === 'used'&& userId === item.user_id}}">
+              <van-card class="order-card" tag="{{item.university}}" desc="{{item.time}}" title="床位号：{{item.Bed_id}}" thumb="{{ item.picture_add }}" data-order-id="{{item._id}}" catchtap="goToDetail">
+                <view slot="footer" style="display: flex; justify-content: flex-end;">
+                  <van-button size="mini" data-order-id="{{item._id}}" catchtap="thumbsUp">点赞
+                  </van-button>
+                  <van-button size="mini" data-order-id="{{item._id}}" catchtap="reportOrder">举报
+                  </van-button>
+                  <van-button size="mini" data-order-id="{{item._id}}" catchtap="comment">评价
+                  </van-button>
+                </view>
+              </van-card>
+            </block>
+            </view>
+          </van-row>
+        </view>
+      </view>
+    </van-tab>
+  </van-tabs>
+
+
+<van-tabbar active="{{ active }}" bind:change="onChange">
+  <van-tabbar-item name="home" icon="home-o" url="/pages/home/home">首页</van-tabbar-item>
+  <!-- <van-tabbar-item name="index" icon="search">标签</van-tabbar-item> -->
+  <van-tabbar-item name="my" icon="friends-o" url="/pages/my/my">个人</van-tabbar-item>
+</van-tabbar>
