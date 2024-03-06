@@ -196,7 +196,6 @@ Page({
         createTime: db.serverDate(), // 服务器时间
         ownerId:that.data.user._id,
         ownerName:that.data.user.User_name,
-        
         longitude: longitude,
         latitude: latitude,
       },

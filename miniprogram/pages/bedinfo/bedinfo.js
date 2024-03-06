@@ -20,11 +20,7 @@ Page({
           bedinfo: bedinfo
         }, () => {
           // 使用 setData 的回调函数确保数据已被设置
-          console.log("bedinfo页面：", this.data.bedinfo);
-          console.log("开始查询地点 bedinfo.address：", this.data.bedinfo.address);
-          console.log("开始查询大学 bedinfo.university", this.data.bedinfo.university);
-          console.log("开始查询城市 bedinfo.city", this.data.bedinfo.city);
-          this.Univ2Location(this.data.bedinfo.address, this.data.bedinfo.city); 
+          this.Univ2Location(); 
         });
       })
       .catch(error => {
@@ -46,64 +42,44 @@ Page({
     // url: 'https://apis.map.qq.com/ws/place/v1/search?page_index=1&page_size=20&boundary=region(北京市,0)&keyword=美食&key=PWHBZ-SREKC-AE52A-A3IEA-QDXLQ-CHB5Q',  
   */
 
-  Univ2Location(university, city) {
-    var _this = this;
-    var allMarkers = []
+ Univ2Location() {
+  var _this = this;
+  var allMarkers = [];
+  
+  // 直接从this.data.bedinfo获取单个位置信息
+  var bedinfo = this.data.bedinfo;
+  
+  console.log("Loading Univ2Location");
+  console.log(bedinfo.address + "," + bedinfo.latitude + "," + bedinfo.longitude);
+  
+  // 创建一个基于bedinfo信息的marker
+  const marker = {
+    id: 0, // 由于只有一个marker，id设置为0
+    latitude: bedinfo.latitude,
+    longitude: bedinfo.longitude,
+    width: 50,
+    height: 50,
+    callout: {
+      content: bedinfo.address,
+      display: 'ALWAYS',
+      fontSize: 14,
+      bgColor: "#ffffff",
+      padding: 10,
+      borderRadius: 5,
+      borderWidth: 1,
+      borderColor: "#cccccc"
+    }
+  };
+  allMarkers.push(marker);
 
-    // 在wx.request调用之前声明并初始化cityWithSuffix
-    const cityWithSuffix = city.endsWith("市") ? city : city + "市";
-    
-    wx.request({
-      url: `https://apis.map.qq.com/ws/place/v1/search?page_index=1&page_size=10&boundary=region(${encodeURIComponent(cityWithSuffix)},0)&keyword=${encodeURIComponent(university)}&key=PWHBZ-SREKC-AE52A-A3IEA-QDXLQ-CHB5Q`,
+  // 设置地图中心为这个marker的位置，并添加到markers中
+  _this.setData({
+    latitude: marker.latitude,
+    longitude: marker.longitude,
+    markers: allMarkers
+  });
+},
 
-      // header: {
-      //   'content-type': 'application/json' // 默认值
-      // },
-      
-      success(res) {
-        console.log("Loading Univ2Location")
-
-        var result = res.data
-        var pois = result.data
-        console.log(pois)
-        for(var i = 0; i< pois.length; i++){
-          var title = pois[i].title
-          var lat = pois[i].location.lat
-          var lng = pois[i].location.lng
-          console.log(title+","+lat+","+lng)
-          const marker = {
-            id: i,
-            latitude: lat,
-            longitude: lng,
-            width: 50,
-            height: 50,
-            callout: {
-              // 点击marker展示title
-              content: title,
-              display: 'ALWAYS', // 始终显示标题
-              // 其他可选的样式调整，如字体大小、背景颜色等
-              fontSize: 14,
-              bgColor: "#ffffff",
-              padding: 10,
-              borderRadius: 5,
-              borderWidth: 1,
-              borderColor: "#cccccc"
-            }
-          }
-          allMarkers.push(marker);
-        }
-        
-        _this.setData({
-          latitude: allMarkers[0].latitude,
-          longitude: allMarkers[0].longitude,
-          markers: allMarkers
-        })
-      },
-      fail(error) {
-        console.error('地点搜索失败：', error);
-      }
-    });
-  },
 
   // 跳转导航APP
   // https://developers.weixin.qq.com/miniprogram/dev/api/location/wx.openLocation.html
