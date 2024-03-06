@@ -56,6 +56,68 @@ Page({
       url: `/pages/detail/detail?id=${orderId}`,
     });
   },
+  comment(event){
+    const orderId = event.currentTarget.dataset.orderId;
+    console.log(orderId);
+    // 弹出填写相关信息的弹窗
+    wx.showModal({
+      title: '填写评价信息',
+      content: '请填写相关信息',
+      showCancel: true,
+      confirmText: '确定',
+      cancelText: '取消',
+      editable: true,
+      success: modalRes => {
+        if (modalRes.confirm) {
+          const reportContent = modalRes.content;
+          db.collection('Order').doc(orderId).update({
+            data: {
+              Evaluation: reportContent,
+            },
+            success: updateRes => {
+              console.log('评价成功');
+              wx.showToast({
+                title: '评价已填写',
+                icon: 'success',
+                duration: 2000
+              });
+            },
+            fail: updateErr => {
+              console.error('评价失败:', updateErr);
+              wx.showToast({
+                title: '评价失败',
+                icon: 'none',
+                duration: 2000
+              });
+            }
+          });
+        } else if (modalRes.cancel) {
+          db.collection('Order').doc(orderId).update({
+            data: {
+              Evaluation: '',
+            },
+            success: updateRes => {
+              console.log('取消评价');
+              wx.showToast({
+                title: '已取消评价',
+                icon: 'success',
+                duration: 2000
+              });
+            },
+            fail: updateErr => {
+              console.error('取消评价失败:', updateErr);
+              wx.showToast({
+                title: '取消评价失败',
+                icon: 'none',
+                duration: 2000
+              });
+            }
+          });
+        }
+      }
+    });
+  },
+
 
   // returnOrder(event) {
   //   // const that = this
