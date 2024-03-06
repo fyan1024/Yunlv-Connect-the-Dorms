@@ -15,9 +15,8 @@
   <van-calendar show="{{ show }}" color="#07c160" type="range" show-confirm="{{ false }}" min-date="{{ minDate }}" max-date="{{ maxDate }}" max-range="{{ 5 }}" bind:close="onClose" bind:confirm="onConfirm" allow-same-day />
 </van-cell-group>
 
-<button bindtap="initiateLocateSearch">Search</button>
-
-<!-- 当开始查询地点时调用 Popup for showing search results -->
+<!-- 当点击开始查询地点时调用 Popup for showing search results -->
+<button bindtap="initiateLocateSearch">开始查询地址</button>
 <van-popup show="{{showLocateSearchPicker}}" position="bottom" bind:close="onLocateClosePopup">
   <view>
     <view wx:for="{{searchResults}}" wx:key="id" bindtap="onLocateSelectOption" data-id="{{item.id}}">

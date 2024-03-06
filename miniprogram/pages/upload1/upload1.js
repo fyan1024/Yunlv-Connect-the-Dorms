@@ -91,6 +91,11 @@ Page({
     });
     console.log('Selected location:', this.data.selectedLocateOption);
     // Additional logic to use the selected location can follow here
+    wx.showToast({
+      title: '成功保存地址',
+      icon: 'success',
+      duration: 1500
+    });
   },
   onLocateClosePopup: function() {
     this.setData({
