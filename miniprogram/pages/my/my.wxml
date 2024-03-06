@@ -31,7 +31,7 @@
             <van-cell title="性别" value="{{user.User_gender}}" />
             <van-cell title="地区" value="{{user.Location}}" />
           </van-col>
-          <van-col span="16" >
+          <van-col span="16">
             <van-cell title="学校" value="{{user.University}}" />
             <van-cell title="手机" value="{{user.phone}}" />
           </van-col>
@@ -40,10 +40,10 @@
       </van-cell-group>
     </view>
   </view>
-  <view class="grid" >
+  <view class="grid">
     <van-grid gutter="{{  }}">
       <van-grid-item icon="photo-o" text="我的订单" data-user2-id="{{user._id}}" bindtap="goToOrder" />
-      <van-grid-item icon="photo-o" text="我的房源" />
+      <van-grid-item icon="photo-o" text="提到我的" data-user2-id="{{user._id}}" bindtap="goToComment" />
       <van-grid-item icon="photo-o" text="我的积分" />
       <van-grid-item icon="photo-o" text="其他设置" />
     </van-grid>

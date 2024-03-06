@@ -4,14 +4,19 @@
   <!-- <van-tabbar-item name="index" icon="search">标签</van-tabbar-item> -->
   <van-tabbar-item name="my" icon="friends-o" url="/pages/my/my">个人</van-tabbar-item>
 </van-tabbar>
+
 <view class="search">
   <van-search value="{{ value }}" placeholder="点击此处开始搜索" disabled bindtap="goToSearch" />
 </view>
 
-<van-button plain hairline type="primary" block color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="goToUploadBedPage">上传床位</van-button>
+<!-- <van-button plain hairline type="primary" block color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="goToUploadBedPage">上传床位</van-button> -->
+<view class="padding-xs" bindtap='goToUploadBedPage' data-id="rentout" data-backgroundcolor="#f9ae95" data-title="发布出租委托" data-url=".../miniprogram/images/rentout.png">
+
+    <image class="img" id='img{{index}}' src=".../miniprogram/images/rentout.png" mode="widthFix" />
+</view>
 
 <view class="view_contain">
-  <view class="view_block">
+  <view class="view_block"> 
     <!-- <view wx:for="{{[0, 1, 2]}}" wx:key="index">
       <van-row gutter="15">
         <van-col span="12" wx:for="{{[0, 1]}}" wx:key="index">
@@ -22,6 +27,7 @@
         </van-col>
       </van-row>
     </view> -->
+
     <van-row gutter="15">
       <van-col span="12" wx:for="{{topProducts}}" wx:key="index" wx:for-item="item" wx:for-index="index">
         <!-- 每个 van-col 包含两个框格 -->
