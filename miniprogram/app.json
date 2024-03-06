@@ -31,6 +31,7 @@
     "pages/login/login",
     "pages/sign/sign",
     "pages/comment/comment",
+    "pages/comment/detail",
     "pages/my/my",
     "pages/my/fill",
     "pages/bedinfo/bedinfo",
@@ -38,6 +39,7 @@
     "pages/order/order",
     "pages/detail/detail",
     "pages/upload1/upload1"
+    
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

@@ -1,10 +1,25 @@
-<view class="comments">
+<!-- <view class="comments">
   <van-cell-group title="我的床位留言">
     <block wx:for="{{comments}}" wx:key="index">
-      <!-- 为van-cell添加data-bedId属性 -->
       <view class="comment-item">
         <van-cell title="床位ID: {{item.bedId}}" value="{{item.content}}" label="留言者: {{item.userName}}" bindtap="goToDetail" data-id-id="{{item.bedId}}"/>
       </view>
+    </block>
+  </van-cell-group>
+</view> -->
+
+<view class="comments">
+  <van-cell-group title="我的床位留言">
+    <!-- 遍历分组后的数据 -->
+    <block wx:for="{{groupedComments}}" wx:key="bedId">
+      <van-cell-group title=" {{item.bedId}}" data-id-id="{{item.bedId}}" catchtap="goToDetail">
+        <block wx:for="{{item.comments}}" wx:key="index">
+          <!-- 为 van-cell 添加 data-bedId 属性 -->
+          <view class="comment-item">
+            <van-cell title="床位ID: {{item.bedId}}" value="{{item.content}}" label="留言者: {{item.userName}}" catchtap="goToComment" data-id-id="{{item._id}}" />
+          </view>
+        </block>
+      </van-cell-group>
     </block>
   </van-cell-group>
 </view>
