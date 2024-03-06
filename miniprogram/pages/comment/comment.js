@@ -9,6 +9,7 @@ Page({
     comments: [], // 用于存储查询到的留言数据
     userId: '',
     id: '',
+    groupedComments: []
   },
   /**
    * 生命周期函数--监听页面加载
@@ -21,6 +22,38 @@ Page({
     })
     this.queryUserBedComments();
   },
+
+  groupedComments() {
+    let groupedComments = {};
+    this.data.comments.forEach(comment => {
+      if (!groupedComments[comment.bedId]) {
+        groupedComments[comment.bedId] = [];
+      }
+      groupedComments[comment.bedId].push(comment);
+    });
+
+    // 将分组后的数据转换为数组形式
+    let groupedCommentsArray = [];
+    for (let bedId in groupedComments) {
+      groupedCommentsArray.push({
+        bedId: bedId,
+        comments: groupedComments[bedId]
+      });
+    }
+
+    // 更新页面数据
+    this.setData({
+      groupedComments: groupedCommentsArray
+    });
+  },
+
+  goToComment(event) {
+    const cId = event.currentTarget.dataset.idId;
+    wx.navigateTo({
+      url: `/pages/comment/detail?id=${cId}`,
+    });
+  },
+
   queryUserBedComments: function () {
     // 假设userId是从某处获取的当前用户ID
     const userId = this.data.userId;
@@ -34,7 +67,10 @@ Page({
       db.collection('comment').where({
         bedId: db.command.in(bedIds)
       }).get().then(res => {
-        this.setData({ comments: res.data });
+        this.setData({
+          comments: res.data
+        });
+        this.groupedComments();
       });
     }).catch(err => {
       console.error('查询失败', err);
@@ -46,7 +82,7 @@ Page({
       url: `/pages/bedinfo/bedinfo?id=${bedId}`,
     });
   },
-  
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
