@@ -13,10 +13,11 @@ Page({
     dormitory_num: '',
     likes_num: '0',
     text: '',
+    ownerId:'',
     show: false,
     pic: false,
-    minDate: new Date(2024, 2, 28).getTime(),
-    maxDate: new Date(2024, 3, 31).getTime(),
+    minDate: new Date().getTime(),
+    maxDate: '',
     bedUrl: "https://img0.baidu.com/it/u=1429435380,946942033&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500",
     user: '',
     fileList: [
@@ -37,6 +38,14 @@ Page({
     this.setData({
       user: wx.getStorageSync('userInfo')
     })
+    this.calculateMaxDate();
+  },
+  calculateMaxDate() {
+    const today = new Date();
+    const twoMonthsLater = new Date(today.getFullYear(), today.getMonth() + 2, today.getDate());
+    this.setData({
+      maxDate: twoMonthsLater.getTime()
+    });
   },
   onDisplay() {
     this.setData({ show: true });
@@ -50,10 +59,15 @@ Page({
   },
   onConfirm(event) {
     const [start, end] = event.detail;
+    const startDate = this.formatDate(start); // 使用已有的 formatDate 方法或自定义格式
+    const endDate = this.formatDate(end);
     this.setData({
       show: false,
-      date: `${this.formatDate(start)} - ${this.formatDate(end)}`,
+      start_time: startDate,
+      deadline: endDate,
+      date: `${startDate} - ${endDate}`, // 更新页面上显示的日期范围
     });
+    console.log(this.data.deadline)
   },
   onChange(e) {
     console.log(e.detail); // 打印输入的内容看看
@@ -67,9 +81,11 @@ Page({
   },
   uploadcontent: function () {
     let that = this;
-    const db = wx.cloud.database(); // 获取数据库引用
-    const { university, address, bed_num, announcements, dormitory_num, pic } = this.data;
-    // 检查schoolName是否为空
+    const db = wx.cloud.database();
+    // 解构页面数据
+    const { university, address, bed_num, announcements, dormitory_num, pic, start_time, deadline } = this.data;
+
+    // 检查必填信息是否已填写
     if (!university || !address || !bed_num || !dormitory_num) {
       wx.showToast({
         title: '请填写完整信息',
@@ -84,7 +100,7 @@ Page({
       });
       return;
     }
-    // 向Bed集合添加记录
+    // 向Bed集合添加记录，包括开始和结束日期
     db.collection('Bed').add({
       data: {
         city: this.data.City,
@@ -92,25 +108,33 @@ Page({
         address: address,
         announcements: announcements,
         bed_num: bed_num,
-        deadline: '',
-        start_time: '',
+        start_time: start_time, // 包含开始日期
+        deadline: deadline, // 包含结束日期
         dormitory_num: dormitory_num,
         evaluation: '',
-        likes_num: '0',
+        likes_num: 0,
         picture_add: that.data.bedUrl,
         university: university,
         createTime: db.serverDate(), // 服务器时间
+        ownerId:that.data.user._id,
+        ownerName:that.data.user.User_name
       },
       success: res => {
         // 添加成功后的处理
         wx.showToast({
           title: '上传成功',
           icon: 'success',
+          duration: 1500
         });
         console.log('上传成功，记录 _id: ', res._id);
         this.setData({
           recordId: res._id // 保存记录ID
         });
+        setTimeout(() => {
+          wx.navigateBack({
+            delta: 1 // 返回上一级页面，如果当前页面是通过 navigateTo 打开的，delta 设置为 1 即可
+          });
+        }, 1500); // 这里的延时应与 showToast 的 duration 相匹配
         console.log(this.data.fileID)
         this.updateDatabase(this.data.fileID);
       },

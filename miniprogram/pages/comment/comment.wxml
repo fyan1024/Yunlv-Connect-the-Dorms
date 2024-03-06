@@ -1,0 +1,10 @@
+<view class="comments">
+  <van-cell-group title="我的床位留言">
+    <block wx:for="{{comments}}" wx:key="index">
+      <!-- 为van-cell添加data-bedId属性 -->
+      <view class="comment-item">
+        <van-cell title="床位ID: {{item.bedId}}" value="{{item.content}}" label="留言者: {{item.userName}}" bindtap="goToDetail" data-id-id="{{item.bedId}}"/>
+      </view>
+    </block>
+  </van-cell-group>
+</view>
