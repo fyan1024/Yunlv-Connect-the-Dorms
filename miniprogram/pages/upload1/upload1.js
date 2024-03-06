@@ -91,6 +91,11 @@ Page({
     });
     console.log('Selected location:', this.data.selectedLocateOption);
     // Additional logic to use the selected location can follow here
+    wx.showToast({
+      title: '成功保存地址',
+      icon: 'success',
+      duration: 1500
+    });
   },
   onLocateClosePopup: function() {
     this.setData({
@@ -191,7 +196,6 @@ Page({
         createTime: db.serverDate(), // 服务器时间
         ownerId:that.data.user._id,
         ownerName:that.data.user.User_name,
-        
         longitude: longitude,
         latitude: latitude,
       },
