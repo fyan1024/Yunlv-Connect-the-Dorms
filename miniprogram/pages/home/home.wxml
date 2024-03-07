@@ -9,11 +9,15 @@
   <van-search value="{{ value }}" placeholder="点击此处开始搜索" disabled bindtap="goToSearch" />
 </view>
 
+<view class="padding-xs" bindtap='goToUploadBedPage' data-id="rentout" data-backgroundcolor="#f9ae95" data-title="发布出租委托" data-url=".../miniprogram/images/rentout.png">
+    <image class="img" id='img{{index}}' src=".../miniprogram/images/rentout.png" mode="widthFix" />
+</view>
+
 <!-- <van-button plain hairline type="primary" block color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="goToUploadBedPage">上传床位</van-button> -->
- style="width: 750rpx; height: 424rpx; display: block; box-sizing: border-box" style="width: 704rpx; height: 415rpx; display: block; box-sizing: border-box"<view class="padding-xs" bindtap='goToUploadBedPage' data-id="rentout" data-backgroundcolor="#f9ae95" 
+ <!-- style="width: 750rpx; height: 424rpx; display: block; box-sizing: border-box" style="width: 704rpx; height: 415rpx; display: block; box-sizing: border-box"<view class="padding-xs" bindtap='goToUploadBedPage' data-id="rentout" data-backgroundcolor="#f9ae95" 
 
     <image class="img" id='img{{index}}' src="cloud://cloud1-0g5krkkz1b2028bc.636c-cloud1-0g5krkkz1b2028bc-1324588702/imagesforpadding/homesrc.gif" mode="widthFix" />
-</view>
+</view> -->
 
 <view class="view_contain">
   <view class="view_block"> 

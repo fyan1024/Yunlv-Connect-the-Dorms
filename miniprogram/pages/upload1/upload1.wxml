@@ -1,13 +1,10 @@
 <!--pages/upload/upload.wxml-->
-<<<<<<< Updated upstream
 
 
 <van-cell-group class="ben_box" bindsubmit="submit">
   <van-field value="{{city}}" required clearable focus clikable label="所在城市" icon="location-o" placeholder="请输入城市名称" data-name="city" bind:change="onChange" bind:click-icon="onClickIcon" />
 
-=======
-  <van-cell-group class="ben_box" bindsubmit="submit">
->>>>>>> Stashed changes
+  <!-- <van-cell-group class="ben_box" bindsubmit="submit"> -->
   <van-field value="{{university}}" required clearable focus clikable label="所在学校" icon="location-o" placeholder="请输入学校名称" data-name="university" bind:change="onChange" bind:click-icon="onClickIcon" />
   <van-field value="{{ bed_num }}" required clearable label="床位编号" icon="edit" placeholder="请输入床位编号" data-name="bed_num" bind:change="onChange" bind:click-icon="onClickIcon" />
   <van-field value="{{ dormitory_num }}" required clearable label="宿舍编号" icon="edit" placeholder="如三号楼1164宿舍写为3-1164" data-name="dormitory_num" bind:change="onChange" bind:click-icon="onClickIcon" />
