@@ -24,6 +24,19 @@
     </view>
   </view>
 </van-popup>
+<!-- 查询地点代码结束 -->
+<!-- 查询地点后展示地图 -->
+<map wx:if="{{showMap === 1}}" 
+    id="map"
+    class="map"
+    markers="{{markers}}"
+    longitude="{{longitude}}" latitude="{{latitude}}"
+    style="width:100%;height: 500rpx;"
+    scale="{{scale}}"
+    bindmarkertap="onMarkerTap">
+  </map>
+<!-- 展示地图代码结束 -->
+
 
 <view class="avatar_box">
   <image src="{{bedUrl}}" mode="" />

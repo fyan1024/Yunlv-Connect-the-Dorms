@@ -37,6 +37,10 @@ Page({
     selectedLocateOption: null,
     longitude:undefined,
     latitude:undefined,
+
+    // 地图
+    showMap: 0,
+    scale: 11,
   },
 
   /* 以下地址选择器 */
@@ -52,7 +56,6 @@ Page({
       });
     }
   },
-  // Function to perform the location search
   CityAndUniv2Location: function(university, city) {
     const cityWithSuffix = city.endsWith("市") ? city : city + "市";
     wx.request({
@@ -96,6 +99,7 @@ Page({
       icon: 'success',
       duration: 1500
     });
+    this.showLocateMap(selectedOption.title, selectedOption.lat, selectedOption.lng);
   },
   onLocateClosePopup: function() {
     this.setData({
@@ -103,7 +107,56 @@ Page({
     });
   },
   /* 地址选择器部分结束 */
+  /* 展示地图和导航 */
+  showLocateMap(address, latitude, longitude){
+    var _this = this;
+    var allMarkers = [];
 
+    this.setData({
+      showMap: 1
+    });
+    
+    var address = address;
+    var latitude = latitude;
+    var longitude = longitude;
+    console.log("地图展示: ", address, latitude, longitude);
+    var marker = {
+      id: 0, // 由于只有一个marker，id设置为0
+      latitude: latitude,
+      longitude: longitude,
+      width: 50,
+      height: 50,
+      callout: {
+        content: address,
+        display: 'ALWAYS',
+        fontSize: 14,
+        bgColor: "#ffffff",
+        padding: 10,
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: "#cccccc"
+      }
+    };
+    allMarkers.push(marker);
+    _this.setData({
+      latitude: marker.latitude,
+      longitude: marker.longitude,
+      markers: allMarkers
+    });;
+  },
+  onMarkerTap(e) {
+    console.log('Marker ID:', e.markerId);
+    const marker = this.data.markers.find(marker => marker.id === e.markerId);
+    if (marker) {
+      wx.openLocation({
+        latitude: marker.latitude,
+        longitude: marker.longitude,
+        name: marker.callout.content, // 可选，地点名字
+        scale: 18 // 可选，缩放级别，默认为18，范围从5~18
+      });
+    }
+  },
+  /* 展示地图和导航部分结束 */
 
   /**
   * 生命周期函数--监听页面加载
