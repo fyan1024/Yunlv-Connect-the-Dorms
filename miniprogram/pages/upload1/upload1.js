@@ -3,7 +3,11 @@
 let db = wx.cloud.database() //操作数据库
 Page({
   data: {
-    City: '',
+// <<<<<<< feature-modifyVis
+//    City: '',
+// =======
+    city: '',
+//  >>>>>>> feature-addMapVizUploadPage&mergeModifyViz
     university: '',
     address: '',
     announcements: '',
@@ -29,7 +33,85 @@ Page({
     ],
     recordId: '',
     fileID: '',
+// <<<<<<< feature-modifyVis
+//  },
+// =======
+
+    // 地址 Locater
+    showLocateSearchPicker: false,
+    searchLocaeResults: [],
+    selectedLocateOption: null,
+    longitude:undefined,
+    latitude:undefined,
   },
+
+  /* 以下地址选择器 */
+  // Function to initiate the university search based on city and university
+  initiateLocateSearch: function() {
+    const { city, university } = this.data;
+    if (city && university) {
+      this.CityAndUniv2Location(university, city);
+    } else {
+      wx.showToast({
+        title: 'Please enter both city and university',
+        icon: 'none',
+      });
+    }
+  },
+  // Function to perform the location search
+  CityAndUniv2Location: function(university, city) {
+    const cityWithSuffix = city.endsWith("市") ? city : city + "市";
+    wx.request({
+      url: `https://apis.map.qq.com/ws/place/v1/search?page_index=1&page_size=10&boundary=region(${encodeURIComponent(cityWithSuffix)},0)&keyword=${encodeURIComponent(university)}&key=PWHBZ-SREKC-AE52A-A3IEA-QDXLQ-CHB5Q`,
+      success: (res) => {
+        const searchResults = res.data.data.map((item, index) => ({
+          id: index,
+          title: item.title,
+          lat: item.location.lat,
+          lng: item.location.lng,
+        }));
+        this.setData({
+          searchResults: searchResults,
+          showLocateSearchPicker: true,
+        });
+        console.log('search results saving to searchResults:  ', searchResults)
+      },
+      fail: (error) => {
+        console.error('Search failed:', error);
+        wx.showToast({
+          title: 'Search failed, please try again',
+          icon: 'none',
+        });
+      }
+    });
+  },
+  onLocateSelectOption: function(e) {
+    const selectedId = e.currentTarget.dataset.id;
+    const selectedOption = this.data.searchResults.find(option => option.id === selectedId);
+    this.setData({
+      selectedLocateOption: selectedOption, // Save the selected option
+      showLocateSearchPicker: false, // Close the popup after selection
+      address: selectedOption.title,
+      latitude: selectedOption.lat, // Set latitude
+      longitude: selectedOption.lng, // Set longitude
+    });
+    console.log('Selected location:', this.data.selectedLocateOption);
+    // Additional logic to use the selected location can follow here
+    wx.showToast({
+      title: '成功保存地址',
+      icon: 'success',
+      duration: 1500
+    });
+  },
+  onLocateClosePopup: function() {
+    this.setData({
+      showUnivSearchPopup: false,
+    });
+  },
+  /* 地址选择器部分结束 */
+
+
+// >>>>>>> feature-addMapVizUploadPage&mergeModifyViz
   /**
   * 生命周期函数--监听页面加载
   */
