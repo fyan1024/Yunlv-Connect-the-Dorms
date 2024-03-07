@@ -1,25 +1,50 @@
-<!-- <view class="comments">
-  <van-cell-group title="我的床位留言">
-    <block wx:for="{{comments}}" wx:key="index">
-      <view class="comment-item">
-        <van-cell title="床位ID: {{item.bedId}}" value="{{item.content}}" label="留言者: {{item.userName}}" bindtap="goToDetail" data-id-id="{{item.bedId}}"/>
-      </view>
-    </block>
-  </van-cell-group>
-</view> -->
-
-<view class="comments">
-  <van-cell-group title="我的床位留言">
-    <!-- 遍历分组后的数据 -->
-    <block wx:for="{{groupedComments}}" wx:key="bedId">
-      <van-cell-group title=" {{item.bedId}}" data-id-id="{{item.bedId}}" catchtap="goToDetail">
-        <block wx:for="{{item.comments}}" wx:key="index">
-          <!-- 为 van-cell 添加 data-bedId 属性 -->
-          <view class="comment-item">
-            <van-cell title="床位ID: {{item.bedId}}" value="{{item.content}}" label="留言者: {{item.userName}}" catchtap="goToComment" data-id-id="{{item._id}}" />
-          </view>
+<van-tabs active="{{ active }}">
+  <van-tab title="我收到的" name="我收到的">
+    <view class="comments">
+      <van-collapse value="{{ activeNames }}" bind:change="onChange">
+        <block wx:for="{{groupedComments}}" wx:key="bedId">
+          <van-collapse-item title=" {{item.userName}}" name="{{item.userId}}">
+            <block wx:for="{{item.comments}}" wx:key="index">
+              <!-- 为 van-cell 添加 data-bedId 属性 -->
+              <view class="comment-item">
+                <van-cell data-id-id="{{item._id}}" use-label-slot="true" bindtap="responseComment">
+                  <van-image round width="50" height="50" src="{{item.avatarUrl}}" />
+                  <view slot="title">
+                    <view class="van-cell-text">留言者: {{item.userName}}</view>
+                  </view>
+                  <view slot="label">
+                    <view class="van-cell-text">{{item.content}}</view>
+                  </view>
+                </van-cell>
+              </view>
+            </block>
+          </van-collapse-item>
         </block>
-      </van-cell-group>
-    </block>
-  </van-cell-group>
-</view>
+      </van-collapse>
+    </view>
+  </van-tab>
+  <van-tab title="我发送的" name="我发送的">
+    <view class="comments">
+      <van-collapse value="{{ activeNames }}" bind:change="onChange">
+        <block wx:for="{{groupedComments2}}" wx:key="bedId">
+          <van-collapse-item title=" {{item.receiverName}}" name="{{item.receiverId}}">
+            <block wx:for="{{item.comments}}" wx:key="index">
+              <!-- 为 van-cell 添加 data-bedId 属性 -->
+              <view class="comment-item">
+                <van-cell data-id-id="{{item._id}}" use-label-slot="true" bindtap="responseComment">
+                  <van-image round width="50" height="50" src="{{item.avatarUrl2}}" />
+                  <view slot="title">
+                    <view class="van-cell-text">接收者: {{item.receiverName}}</view>
+                  </view>
+                  <view slot="label">
+                    <view class="van-cell-text">{{item.content}}</view>
+                  </view>
+                </van-cell>
+              </view>
+            </block>
+          </van-collapse-item>
+        </block>
+      </van-collapse>
+    </view>
+  </van-tab>
+</van-tabs>

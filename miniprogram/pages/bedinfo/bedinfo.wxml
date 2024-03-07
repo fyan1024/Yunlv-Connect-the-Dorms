@@ -4,41 +4,52 @@
     <image class="image" mode='aspectFill' src="{{bedinfo.picture_add}}"></image>
   </view>
 
-  <view class="basic-info">
+  <view class="info">
     <van-cell-group title="基本信息">
       <van-cell title="地址" value="{{bedinfo.address}}" />
       <van-cell title="房间号" value="{{bedinfo.dormitory_num}}" />
       <van-cell title="床号" value="{{bedinfo.bed_num}}" />
-      <van-cell title="宣传语" value="{{bedinfo.announcements}}" />
+      <van-cell title="备注" value="{{bedinfo.announcements}}" />
     </van-cell-group>
   </view>
-
-  <!-- 纬度在前，经度在后 -->
-  <map id="map"
-    class="map"
-    markers="{{markers}}"
-    longitude="{{longitude}}" latitude="{{latitude}}"
-    style="width:100%;height: 500rpx;"
-    scale="{{scale}}"
-    bindmarkertap="onMarkerTap">
-  </map>
-
-  <view class="other-info">
+  <view class="otherinfo">
     <van-grid>
-      <van-grid-item icon="contact-o" text="房主：" />
+      <van-grid-item icon="contact-o" text="房主：{{bedinfo.ownerName}}" />
       <van-grid-item icon="star-o" text="评分：{{bedinfo.rate}}" />
       <van-grid-item icon="photo-o" text="文字" />
       <van-grid-item icon="photo-o" text="文字" />
     </van-grid>
+
+  </view>
+
+  <view class="comments">
+    <van-cell-group title="留言">
+      <block wx:for="{{comments}}" wx:key="index">
+        <van-cell title="{{item.userName}}" value="{{item.content}}" />
+      </block>
+    </van-cell-group>
+  </view>
+
+  <view class="content">
+    <van-cell-group>
+      <van-field value="{{ content }}" data-name="content" center clearable label="留言" border="{{ false }}" bindchange="handleInput" use-button-slot autosize>
+        <van-button slot="button" size="small" type="primary" data-id-id="{{bedinfo.ownerId}}" bindtap="submitComment">
+          点击留言
+        </van-button>
+      </van-field>
+    </van-cell-group>
   </view>
 
   <view class="block">
+
   </view>
+
+
 
   <van-goods-action>
     <van-goods-action-icon icon="chat-o" text="联系床主" bind:click="onClickIcon1" />
     <van-goods-action-icon icon="cart-o" text="我的收藏" bind:click="onClickIcon2" />
     <van-goods-action-button text="加入收藏" type="warning" bind:click="onClickButton1" />
-    <van-goods-action-button text="立即预定" bind:click="onClickButton2" />
+    <van-goods-action-button text="立即预定" bind:click="onClickButton2" data-bedId="{{bedId}}"/>
   </van-goods-action>
 </view>
