@@ -7,7 +7,6 @@
     <van-field label="学校" value='{{University}}' placeholder="请输入学校" border="{{ false }}" bind:change="onChange" data-name="University"/>
     <van-field label="手机" value='{{user.phone}}' disabled border="{{ false }}"/>
   </van-cell-group>
-
   <view class="button">
     <van-col span="8" offset="5">
       <van-button form-type="submit" plain type="primary" bindtap="submit">提交</van-button>
@@ -17,7 +16,6 @@
     </van-col>
   </view>
 </view>
-
 <van-popup show="{{ show }}" position="top"  bind:close="onClose">
   <van-picker columns="{{ columns }}" bind:change="onChangePop" />
 </van-popup>

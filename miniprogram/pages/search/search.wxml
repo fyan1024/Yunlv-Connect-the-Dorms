@@ -27,11 +27,9 @@
     <van-popup show="{{ showCityPicker }}" closeable position="bottom" bind:close="onCitySelectClose">
       <van-picker columns="{{ uniqueCityOptions }}" bind:change="onCityChange"/>  
     </van-popup>
-
     <van-popup show="{{ showBusyPicker }}" closeable position="bottom" bind:close="onBusySelectClose">
       <van-picker columns="{{ uniqueBusyOptions }}" bind:change="onBusyChange"/>  
     </van-popup>
-    
     <van-popup show="{{ showUnivPicker }}" closeable position="bottom" bind:close="onUnivSelectClose">
       <van-picker columns="{{ uniqueUnivOptions }}" bind:change="onUnivChange"/>  
     </van-popup>

@@ -1,42 +1,13 @@
 <!--pages/upload/upload.wxml-->
-<<<<<<< Updated upstream
-
-
 <van-cell-group class="ben_box" bindsubmit="submit">
-  <van-field value="{{city}}" required clearable focus clikable label="所在城市" icon="location-o" placeholder="请输入城市名称" data-name="city" bind:change="onChange" bind:click-icon="onClickIcon" />
-
-=======
-  <van-cell-group class="ben_box" bindsubmit="submit">
->>>>>>> Stashed changes
   <van-field value="{{university}}" required clearable focus clikable label="所在学校" icon="location-o" placeholder="请输入学校名称" data-name="university" bind:change="onChange" bind:click-icon="onClickIcon" />
   <van-field value="{{ bed_num }}" required clearable label="床位编号" icon="edit" placeholder="请输入床位编号" data-name="bed_num" bind:change="onChange" bind:click-icon="onClickIcon" />
   <van-field value="{{ dormitory_num }}" required clearable label="宿舍编号" icon="edit" placeholder="如三号楼1164宿舍写为3-1164" data-name="dormitory_num" bind:change="onChange" bind:click-icon="onClickIcon" />
-  
-  <!-- <van-field value="{{ address }}" required clearable label="学校地址" icon="guide-o" placeholder="请输入学校地址" data-name="address" bind:change="onChange" bind:click-icon="onClickIcon" /> -->
-
-  <view class="gender">
-        <view class='title'>性别</view>
-        <picker bindchange="bindPickerChange" value="{{gender}}" range="{{array}}">
-            <view class="picker">
-                {{gender?gender:'请选择'}}
-            </view>
-        </picker>
-    </view>
-
+  <van-field value="{{ address }}" required clearable label="学校地址" icon="guide-o" placeholder="请输入学校地址" data-name="address" bind:change="onChange" bind:click-icon="onClickIcon" />
   <van-field value="{{ announcements }}" clearable label="备注" type="textarea" icon="smile-comment-o" placeholder="请输入备注" data-name="announcements" bind:change="onChange" autosize border="{{ false }}" />
   <van-cell title="选择日期区间" value="{{ date }}" bind:click="onDisplay" />
-  <van-calendar show="{{ show }}" color="#07c160" type="range" show-confirm="{{ false }}" min-date="{{ minDate }}" max-date="{{ maxDate }}" max-range="{{ 5 }}" bind:close="onClose" bind:confirm="onConfirm" allow-same-day />
+  <van-calendar show="{{ show }}" type="range" show-confirm="{{ false }}" min-date="{{ minDate }}" max-date="{{ maxDate }}" max-range="{{ 5 }}" bind:close="onClose" bind:confirm="onConfirm" />
 </van-cell-group>
-
-<!-- 当点击开始查询地点时调用 Popup for showing search results -->
-<button bindtap="initiateLocateSearch">开始查询地址</button>
-<van-popup show="{{showLocateSearchPicker}}" position="bottom" bind:close="onLocateClosePopup">
-  <view>
-    <view wx:for="{{searchResults}}" wx:key="id" bindtap="onLocateSelectOption" data-id="{{item.id}}">
-      {{item.title}}
-    </view>
-  </view>
-</van-popup>
 
 <view class="avatar_box">
   <image src="{{bedUrl}}" mode="" />
@@ -52,4 +23,3 @@
     <van-button plain type="info" size="normal" bindtap="cancelsub">取消</van-button>
   </van-col>
 </view>
-
