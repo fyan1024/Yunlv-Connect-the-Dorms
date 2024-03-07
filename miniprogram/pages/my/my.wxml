@@ -44,7 +44,7 @@
     <van-grid gutter="{{  }}">
       <van-grid-item icon="photo-o" text="我的订单" data-user2-id="{{user._id}}" bindtap="goToOrder" />
       <van-grid-item icon="photo-o" text="提到我的" data-user2-id="{{user._id}}" bindtap="goToComment" />
-      <van-grid-item icon="photo-o" text="我的积分" />
+      <van-grid-item icon="photo-o" text="我的积分" data-user3-id="{{user._id}}" bindtap="goToPoints" />
       <van-grid-item icon="photo-o" text="其他设置" />
     </van-grid>
   </view>
