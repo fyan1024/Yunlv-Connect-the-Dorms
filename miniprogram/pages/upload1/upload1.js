@@ -1,9 +1,20 @@
 // pages/upload/upload.js
 // import Toast from '@vant/weapp/toast/toast';
+const app = getApp();
 let db = wx.cloud.database() //操作数据库
+let genderArray = ['男','女'];
 Page({
   data: {
+<<<<<<< Updated upstream
     city: '',
+=======
+    array: genderArray,//引入性别选择
+    gender:'',
+    genderValue:'',
+    imageArray:[],//上传多张图片
+    // imgList: [],
+    City: '',
+>>>>>>> Stashed changes
     university: '',
     address: '',
     announcements: '',
@@ -30,6 +41,7 @@ Page({
     ],
     recordId: '',
     fileID: '',
+<<<<<<< Updated upstream
 
     // 地址 Locater
     showLocateSearchPicker: false,
@@ -51,6 +63,20 @@ Page({
         icon: 'none',
       });
     }
+=======
+    icon:{
+      "width":"100rpx",
+      "height":"100rpx",
+      "path":""
+    }
+  },
+  bindPickerChange: function(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      gender: genderArray[e.detail.value],
+      genderValue: e.detail.value
+    })
+>>>>>>> Stashed changes
   },
   // Function to perform the location search
   CityAndUniv2Location: function(university, city) {
