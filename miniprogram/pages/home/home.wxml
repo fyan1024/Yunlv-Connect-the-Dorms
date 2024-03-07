@@ -9,6 +9,7 @@
 </view>
 
 <!-- <van-button plain hairline type="primary" block color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="goToUploadBedPage">上传床位</van-button> -->
+
 <view class="padding-xs" bindtap='goToUploadBedPage' data-id="rentout" data-backgroundcolor="#f9ae95" data-title="发布出租委托" data-url=".../miniprogram/images/rentout.png" style="width: 580rpx; height: 214rpx; display: block; box-sizing: border-box"mode="widthFix">
     <image style="width: 750rpx; height: 158rpx; display: inline-block; box-sizing: border-box" class="img" id='img{{index}}' src="cloud://cloud1-0g5krkkz1b2028bc.636c-cloud1-0g5krkkz1b2028bc-1324588702/imagesforpadding/绿白色租房房源介绍宣传现代房地产宣传中文视频封面 (2560 x 900 像素).gif" mode="widthFix" />
 </view>
