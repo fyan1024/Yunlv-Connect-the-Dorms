@@ -2,6 +2,7 @@ const db = wx.cloud.database();
 
 Page({
   data: {
+    /* 基本信息 */
     goodsDetail: null,
     bedinfo: [],
     
@@ -9,7 +10,6 @@ Page({
     longitude:undefined,
     latitude:undefined,
     scale:11,
-    /* map 部分结束 */
 
     /* 留言 部分 */
     content: '', // 用户输入的评论内容
@@ -22,7 +22,9 @@ Page({
     comments: [], // 存储查询到的留言数据
     bed: [],
     owner: '',
-    /* 留言 部分结束 */
+
+    /* 收藏 部分 */
+    isCollected: false // 初始状态设为未收藏
 
   },
   onLoad(options) {
@@ -55,7 +57,36 @@ Page({
         console.error('获取商品信息失败', error);
       }
     );
+    /* 收藏功能 */
+    this.collected();
+
   },
+
+  // collected() {
+
+  
+
+  /* 收藏 */
+  collected() {
+    const db = wx.cloud.database()
+    db.collection('save').where({
+      bedId: this.data.bedId
+    }).get({
+      success: res => {
+        if (res.data.length > 0) {
+          this.setData({
+            isCollected: true
+          });
+        } else {
+          this.setData({
+            isCollected: false
+          });
+        }
+      }
+    })
+  },
+
+  /* 查询留言 */
   queryComments(bedId) {
     db.collection('comment').where({
       bedId: bedId // 确保留言数据中有 bedId 字段关联到床铺
@@ -205,21 +236,48 @@ Page({
     }
   },
 
-  onClickIcon1() {
-    wx.navigateTo({
-      url: '/pages/chat/chat',
+  // onClickIcon1() {
+  //   wx.navigateTo({
+  //     url: '/pages/chat/chat',
+  //   })
+  // },
+
+  onClickIcon1(event) {
+    this.setData({
+      isCollected: false
     })
+    console.log("collected2", this.data.isCollected)
+    const db = wx.cloud.database()
+    db.collection('save').where({
+      bedId: this.data.bedId,
+      userId: this.data.userId
+    }).remove().then(res => {
+      console.log('取消收藏');
+      wx.showToast({
+        title: '取消收藏',
+        icon: 'success',
+        duration: 1500,
+      });
+      // console.log("collected 取消收藏", this.data.isCollected)
+    }).catch(err => {
+      wx.showToast({
+        title: '取消收藏失败',
+        icon: 'none',
+        duration: 1500,
+      });
+    });
   },
 
-  onClickIcon2() {
-    wx.showToast({
-      title: '点击图标2',
-      icon: 'none'
-    })
-    console.log
+  onClickIcon2(event) {
+    const userId = event.currentTarget.dataset.user2Id;
+    console.log(userId)
+    wx.navigateTo({
+      url: `/pages/save/save?id=${userId}`,
+    });
   },
 
   onClickButton1(event) {
+    const that = this
     const bedId = event.currentTarget.dataset.bedid;
     wx.showToast({
       title: '提交成功',
@@ -245,6 +303,10 @@ Page({
           icon: 'success',
           duration: 1500,
         });
+        that.setData({
+          isCollected: true
+        })
+        console.log(that.data.isCollected)
       },
       fail: function (err) {
         // 数据保存失败后的回调函数
