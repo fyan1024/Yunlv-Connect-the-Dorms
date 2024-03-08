@@ -1,0 +1,11 @@
+<view>
+  <!-- 遍历展示床铺信息 -->
+  <block wx:for="{{beds}}" wx:key="index">
+    <van-card tag="{{item.bedId}}" price="{{item.address}}" desc="{{item.announcements}}" title="{{item.city}}" thumb="{{item.picture_add}}" currency="">
+      <view slot="footer">
+        <van-button size="mini">按钮</van-button>
+        <van-button size="mini">按钮</van-button>
+      </view>
+    </van-card>
+  </block>
+</view>

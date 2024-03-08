@@ -49,8 +49,8 @@
     "pages/detail/detail",
     "pages/upload1/upload1",
     "pages/points/points",
-    "pages/reserve/reserve",
-    "pages/chat/chat"
+    "pages/save/save",
+    "pages/reserve/reserve"
     
   ],
   "window": {
@@ -61,5 +61,4 @@
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json"
-  
 }
