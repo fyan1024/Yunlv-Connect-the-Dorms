@@ -96,19 +96,14 @@ Page({
     }
   },
 
-  onClickIcon1() {
-    wx.navigateTo({
-      url: '/pages/chat/chat',
-    })
-  },
 
-  // onClickIcon1() {
-  //   wx.showToast({
-  //     title: '点击图标1',
-  //     icon: 'none'
-  //   })
-  //   console.log
-  // },
+  onClickIcon1() {
+    wx.showToast({
+      title: '点击图标1',
+      icon: 'none'
+    })
+    console.log
+  },
 
   onClickIcon2() {
     wx.showToast({
