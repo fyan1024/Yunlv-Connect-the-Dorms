@@ -1,0 +1,17 @@
+/* pages/reserve/reserve.wxss */
+.card {
+  font-size: 20px !important;
+  line-height: 35px !important;
+}
+
+.desc {
+  font-size: 15px;
+}
+
+.van-card{
+  margin-top: 20px;
+}
+
+.van-cell-group{
+  margin-top: 20px;
+}

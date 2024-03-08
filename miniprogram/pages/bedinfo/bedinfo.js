@@ -178,13 +178,10 @@ Page({
     }
   },
 
-
   onClickIcon1() {
-    wx.showToast({
-      title: '点击图标1',
-      icon: 'none'
+    wx.navigateTo({
+      url: '/pages/chat/chat',
     })
-    console.log
   },
 
   onClickIcon2() {
@@ -195,17 +192,50 @@ Page({
     console.log
   },
 
-  onClickButton1() {
+  onClickButton1(event) {
+    const bedId = event.currentTarget.dataset.bedid;
     wx.showToast({
-      title: '点击按钮1',
-      icon: 'none'
+      title: '提交成功',
+      icon: 'success',
+      duration: 1500,
+    });
+    const db = wx.cloud.database();
+    console.log(this.data.bedinfo)
+    const saveInfo = {
+      // 假设的订单信息，根据实际需要进行调整
+      Generation_time: new Date(), // 创建时间
+      bedId: this.data.bedId,
+      userId: this.data.userId,
+      ownerId: this.data.bedinfo.ownerId,
+      ownerName: this.data.bedinfo.ownerName
+    };
+    db.collection('save').add({
+      data: saveInfo,
+      success: function (res) {
+        // 数据保存成功后的回调函数
+        wx.showToast({
+          title: '收藏成功',
+          icon: 'success',
+          duration: 1500,
+        });
+      },
+      fail: function (err) {
+        // 数据保存失败后的回调函数
+        wx.showToast({
+          title: '收藏失败',
+          icon: 'none',
+          duration: 2000
+        });
+      }
+    });
+  },
+
+  onClickButton2(event) {
+    const bedId = event.currentTarget.dataset.bedid;
+    wx.navigateTo({
+      url: `/pages/reserve/reserve?id=${bedId}`,
     })
   },
 
-  onClickButton2() {
-    wx.showToast({
-      title: '点击按钮2',
-      icon: 'none'
-    })
-  },
+
 });
