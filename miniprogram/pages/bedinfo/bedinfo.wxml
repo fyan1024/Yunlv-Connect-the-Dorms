@@ -38,7 +38,15 @@
   <van-goods-action>
     <van-goods-action-icon icon="chat-o" text="联系床主" bind:click="onClickIcon1" />
     <van-goods-action-icon icon="cart-o" text="我的收藏" bind:click="onClickIcon2" />
+    <van-goods-action-button text="加入收藏" type="warning" bind:click="onClickButton1" data-bedId="{{bedId}}" />
+    <van-goods-action-button text="立即预定" bind:click="onClickButton2" data-bedId="{{bedId}}" />
+  </van-goods-action>
+
+  <!-- <van-goods-action>
+    <van-goods-action-icon icon="chat-o" text="联系床主" bind:click="onClickIcon1" />
+    <van-goods-action-icon icon="cart-o" text="我的收藏" bind:click="onClickIcon2" />
     <van-goods-action-button text="加入收藏" type="warning" bind:click="onClickButton1" />
     <van-goods-action-button text="立即预定" bind:click="onClickButton2" />
-  </van-goods-action>
+  </van-goods-action> -->
+
 </view>
