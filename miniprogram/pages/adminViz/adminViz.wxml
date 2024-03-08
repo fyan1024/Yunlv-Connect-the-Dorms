@@ -1,0 +1,27 @@
+<!--pages/adminViz/adminViz.wxml-->
+<van-tabs active="{{ active }}" bind:change="onChange">
+  
+  <van-tab title="用户展示">
+    
+  </van-tab>
+
+  <van-tab title="床源展示">
+    <view class="bed-item" wx:for="{{ bedData }}" wx:key="index" bindtap="showBedDetail" data-index="{{ index }}">
+      <image class="bed-image" src="{{ item.picture_add }}"></image>
+      <view class="bed-info">
+        <view class="bed-university">{{ item.university }}</view>
+        <view class="bed-announcements">公告：{{ item.announcements }}</view>
+        <view class="bed-address">地址：{{ item.address }}</view>
+        <view class="bed-ownerName">房主：{{ item.ownerName }}</view>
+      </view>
+    </view>
+
+
+  </van-tab>
+    
+
+  <van-tab title="订单展示">
+    
+  </van-tab>
+
+</van-tabs>

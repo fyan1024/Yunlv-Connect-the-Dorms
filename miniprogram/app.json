@@ -50,7 +50,11 @@
     "pages/upload1/upload1",
     "pages/points/points",
     "pages/save/save",
-    "pages/reserve/reserve"
+    "pages/reserve/reserve",
+
+    "pages/adminViz/adminViz",
+    "pages/checkreport/checkreport"
+
     
   ],
   "window": {
