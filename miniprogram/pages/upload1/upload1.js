@@ -99,7 +99,9 @@ Page({
       icon: 'success',
       duration: 1500
     });
+
     this.showLocateMap(selectedOption.title, selectedOption.lat, selectedOption.lng);
+
   },
   onLocateClosePopup: function() {
     this.setData({
