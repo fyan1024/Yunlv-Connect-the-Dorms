@@ -1,0 +1,45 @@
+/* pages/adminViz/adminViz.wxss */
+
+.bed-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee; /* 添加底部分隔线 */
+}
+
+.bed-image {
+  width: 80px; /* 设置图片宽度 */
+  height: 80px; /* 设置图片高度 */
+  margin-right: 10px; /* 图片与文本之间的间距 */
+}
+
+.bed-info {
+  flex: 1; /* 文本信息占据剩余空间 */
+}
+
+.bed-university {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px; /* 床源标题与其他信息之间的间距 */
+
+  display: inline-block; /* 设置为内联块元素，使标题与图片上方平行 */
+  vertical-align: middle; /* 垂直居中对齐 */
+}
+
+.bed-announcements {
+  font-size: 10px;
+  color: #666;
+}
+
+.bed-address {
+  font-size: 10px;
+  color: #666; 
+}
+
+
+.bed-ownerName {
+  font-size: 10px;
+  color: #666; 
+}
+
+

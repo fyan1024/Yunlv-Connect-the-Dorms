@@ -8,7 +8,8 @@ Page({
     user: '',
     user2: [],
     amount: '',
-    active: 'my'
+    active: 'my',
+    inputData: ''
   },
   onChange(event) {
     this.setData({
@@ -63,24 +64,46 @@ Page({
     const user = this.data.user;
     if (user.Is_student == false) {
       wx.showModal({
-        title: '身份验证',
-        content: '是否验证学生身份',
-        complete: (res) => {
-          if (res.cancel) {
-            wx.showToast({
-              title: '放弃验证',
-              icon: 'none'
-            })
-          }
-
+        title: '请输入数据',
+        content: '请在下方输入框中输入数据',
+        showCancel: true,
+        editable: true,
+        success: function (res) {
           if (res.confirm) {
-            wx.showToast({
-              title: '暂时无法验证',
-              icon: 'none'
-            })
+            // 用户点击确定按钮
+            const inputData = res.content;
+            // 更新页面数据
+            const db = wx.cloud.database();
+            db.collection('User').doc(user._id).update({
+                data: {
+                  Code: inputData,
+                }
+              })
+              .then(res => {
+                wx.hideLoading()
+                wx.showModal({
+                  content: '修改成功',
+                  complete: (res) => {
+                    wx.reLaunch({
+                      url: '/pages/my/my',
+                    })
+                  }
+                })
+              })
+              .catch(err => {
+                wx.hideLoading()
+                wx.showToast({
+                  title: '修改失败,请重试',
+                  icon: 'none'
+                })
+              })
+            // 保存数据到本地或发送到服务器
+            // 这里可以根据业务需求自行处理
+            // 弹出提示框，显示保存成功
+
           }
         }
-      })
+      });
     } else {
       wx.showToast({
         title: '您已验证学生身份',
@@ -133,13 +156,21 @@ Page({
     });
   },
 
-    goToPoints(event) {
-        const userId = event.currentTarget.dataset.user3Id;
-        console.log(userId)
-        wx.navigateTo({
-          url: `/pages/points/points?id=${userId}`,
-        });
-      },
+  goToPoints(event) {
+    const userId = event.currentTarget.dataset.user3Id;
+    console.log(userId)
+    wx.navigateTo({
+      url: `/pages/points/points?id=${userId}`,
+    });
+  },
+
+  goToSaves(event) {
+    const userId = event.currentTarget.dataset.user3Id;
+    console.log(userId)
+    wx.navigateTo({
+      url: `/pages/save/save?id=${userId}`,
+    });
+  },
 
   /**
    * 生命周期函数--监听页面显示

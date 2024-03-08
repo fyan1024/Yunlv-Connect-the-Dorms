@@ -16,7 +16,7 @@
         </view>
         <view class="uname">
           <text>{{user.User_name}}</text>
-          <text>{{user.Points}}</text>
+          <!-- <text>{{user.Points}}</text> -->
           <van-tag round type="warning" wx:if="{{user.Is_student==true}}" bindtap="idenfy">学生身份</van-tag>
           <van-tag round wx:if="{{user.Is_student==false}}" bindtap="idenfy">学生身份</van-tag>
         </view>
@@ -45,7 +45,9 @@
       <van-grid-item icon="photo-o" text="我的订单" data-user2-id="{{user._id}}" bindtap="goToOrder" />
       <van-grid-item icon="photo-o" text="提到我的" data-user2-id="{{user._id}}" bindtap="goToComment" />
       <van-grid-item icon="photo-o" text="我的积分" data-user3-id="{{user._id}}" bindtap="goToPoints" />
-      <van-grid-item icon="photo-o" text="其他设置" />
+      <!-- <van-grid-item icon="photo-o" text="其他设置" /> -->
+      <van-grid-item icon="photo-o" text="我的收藏" data-user3-id="{{user._id}}" bindtap="goToSaves" />
     </van-grid>
   </view>
+
 </view>
