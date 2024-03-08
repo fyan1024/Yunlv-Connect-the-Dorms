@@ -1,0 +1,16 @@
+<van-card title-class="card" desc-class="desc" num="1" tag="标签" desc="{{bedinfo.address}} {{bedinfo.start_time}}-{{bedinfo.deadline}}" title="{{bedinfo.university}}" thumb="{{bedinfo.picture_add}}">
+  <view slot="footer">
+    <van-button size="mini">{{bedinfo.city}}</van-button>
+  </view>
+</van-card>
+
+<van-cell-group>
+  <van-cell title="创建时间" value="{{currentTime}}" />
+  <van-cell title="单元格" value="内容" label="描述信息" border="{{ false }}" />
+</van-cell-group>
+
+<van-submit-bar disabled="{{isDisabled}}" price="{{2000}}" button-text="提交订单" bind:submit="onSubmit" currency="" suffix-label="积分" label="合计扣除" decimal-length="0">
+  <block wx:if="{{showTip}}">
+    <view slot="tip">{{tipMessage}}<text>查看积分</text></view>
+  </block>
+</van-submit-bar>
