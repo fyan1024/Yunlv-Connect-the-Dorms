@@ -17,8 +17,11 @@ Page({
     userId: '',
     userName: '',
     avatarUrl: '',
+    avatarUrl2: '',
     bedId: '',
     comments: [], // 存储查询到的留言数据
+    bed: [],
+    owner: '',
     /* 留言 部分结束 */
 
   },
@@ -29,7 +32,7 @@ Page({
     this.setData({
       user: user,
       userId: user._id, // 确保这里的属性名与实际存储的key匹配
-      userName: user.name,
+      userName: user.User_name,
       avatarUrl: user.avatarUrl
     })
     console.log("用户id", this.data.userId)
