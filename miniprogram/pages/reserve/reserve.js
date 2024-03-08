@@ -27,8 +27,7 @@ Page({
       bedId: bedId,
       user: user
     })
-    console.log("user是", user)
-    console.log("用户Id是", this.data.userId)
+    console.log("user是", user, "用户Id是", this.data.userId)
     this.checkCondition();
     this.setCurrentTime();
   },
@@ -37,7 +36,7 @@ Page({
     const _ = db.command; // 获取数据库查询命令对象
     const userId = this.data.userId; // 需要替换为实际获取当前用户ID的代码
     const bedId = this.data.bedId;
-    console.log("用户头像", this.data.user.avatarUrl)
+    console.log("用户头像", this.data.user.avatarUrl, "bedId是", this.data.bedId)
     db.collection('User').where({
       _id: userId, // 假设使用_id字段标识用户ID
       Points: _.lt(20) // 检查Points字段是否小于20
@@ -139,7 +138,8 @@ Page({
     const db = wx.cloud.database();
     db.collection('Bed').doc(bedId).update({
       data: {
-        Is_busy: true
+        // Is_busy: true
+        Is_busy: false
       },
       success: function (res) {
       },

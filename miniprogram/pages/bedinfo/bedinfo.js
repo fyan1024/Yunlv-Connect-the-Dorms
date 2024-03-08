@@ -259,9 +259,11 @@ Page({
 
   onClickButton2(event) {
     const bedId = event.currentTarget.dataset.bedid;
+
     wx.navigateTo({
       url: `/pages/reserve/reserve?id=${bedId}`,
-    })
+    });
+    console.log('navigate to: ', bedId)
   },
 
 
