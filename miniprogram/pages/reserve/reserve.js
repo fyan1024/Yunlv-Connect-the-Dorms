@@ -102,10 +102,10 @@ Page({
       Is_success: false,
       Bed_id: this.data.bedId,
       university: this.data.bedinfo.university,
-      User_id: this.data.userId,
+      user_id: this.data.userId,
       status: 'To be returned',
       user_status: 'To be used',
-      user_id: this.data.bedinfo.ownerId,
+      User_id: this.data.bedinfo.ownerId,
       picture_add: this.data.user.avatarUrl,
     };
     db.collection('Order').add({
