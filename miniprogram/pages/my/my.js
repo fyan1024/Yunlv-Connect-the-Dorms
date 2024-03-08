@@ -164,6 +164,14 @@ Page({
     });
   },
 
+  goToSaves(event) {
+    const userId = event.currentTarget.dataset.user3Id;
+    console.log(userId)
+    wx.navigateTo({
+      url: `/pages/save/save?id=${userId}`,
+    });
+  },
+
   /**
    * 生命周期函数--监听页面显示
    */
