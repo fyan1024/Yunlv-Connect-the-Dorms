@@ -68,6 +68,10 @@
                   </van-button>
                   <van-button size="mini" data-order-id="{{item._id}}" catchtap="reportOrder">举报
                   </van-button>
+
+                  <van-button size="mini" data-order-id="{{item._id}}" catchtap="comment">评价
+                  </van-button>
+
                 </view>
               </van-card>
             </block>
