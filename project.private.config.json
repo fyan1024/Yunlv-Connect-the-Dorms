@@ -6,6 +6,20 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/adminViz/adminViz",
+          "pathName": "pages/adminViz/adminViz",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/checkreport/checkreport",
+          "pathName": "pages/checkreport/checkreport",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/login/login",
           "pathName": "pages/login/login",
           "query": "",

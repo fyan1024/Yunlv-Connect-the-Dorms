@@ -53,12 +53,15 @@ Page({
         });
         console.log("床铺ID", bedinfo._id)
         this.queryComments(bedinfo._id);
+        
+        /* 收藏功能 */
+        this.collected();
       }).catch(error => {
         console.error('获取商品信息失败', error);
       }
     );
-    /* 收藏功能 */
-    this.collected();
+    // /* 收藏功能 */
+    // this.collected();
 
   },
 

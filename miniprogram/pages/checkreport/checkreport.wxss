@@ -1,0 +1,9 @@
+/* pages/checkreport/checkreport.wxss */
+/* pages/my/my.wxss */
+page {
+  width: 100%;
+  height: 100%;
+  background: rgba(250, 231, 179, 0.795)
+}
+
+

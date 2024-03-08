@@ -1,0 +1,39 @@
+<!--pages/checkreport/checkreport.wxml-->
+<van-tabs active="{{ active }}" bind:change="onChange">
+  <!-- 1.未被举报页面 -->
+  <van-tab title="未被举报">
+    <view class="view_contain">
+      <view class="view_block">
+        <van-row gutter="15">
+          <view class="order-item" wx:for="{{dataObj}}"  wx:key="index">
+            <block wx:if="{{item.Is_report === false}}">
+              <van-card class="order-card" tag="{{item.university}}" desc="{{item.time}}" title="床位号：{{item.Bed_id}}" thumb="{{ item.picture_add }}" data-order-id="{{item._id}}" catchtap="goToDetail">
+              </van-card>
+              </block>
+          </view>
+        </van-row>
+      </view>
+    </view>
+  </van-tab>
+
+
+  <!-- 2.已被举报页面 -->
+  <van-tab title="已被举报">
+    <view class="view_contain">
+      <view class="view_block">
+        <van-row gutter="15">
+          <view class="order-item" wx:for="{{dataObj}}" wx:key="index">
+            <block wx:if="{{item.Is_report === true}}">
+              <van-card class="order-card" tag="{{item.university}}" desc="{{item.time}}" title="床位号：{{item.Bed_id}}" thumb="{{ item.picture_add }}" data-order-id="{{item._id}}" catchtap="goToDetail">
+                <view slot="footer" style="display: flex; justify-content: flex-end;">
+                  <van-button size="mini" data-order-id="{{item._id}}" catchtap="viewDetails">查看详情</van-button>
+                  <van-button size="mini" data-order-id="{{item._id}}" catchtap="reviewReport">审核举报</van-button>
+                </view>
+              </van-card>
+            </block>
+          </view>
+        </van-row>
+      </view>
+    </view>
+  </van-tab>
+</van-tabs>
