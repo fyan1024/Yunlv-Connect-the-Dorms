@@ -32,6 +32,25 @@
     </van-grid>
   </view>
 
+  <view class="comments">
+    <van-cell-group title="留言">
+      <block wx:for="{{comments}}" wx:key="index">
+        <van-cell title="{{item.userName}}" value="{{item.content}}" />
+      </block>
+    </van-cell-group>
+  </view>
+
+  <!-- 留言部分 -->
+  <view class="content">
+    <van-cell-group>
+      <van-field value="{{ content }}" data-name="content" center clearable label="留言" border="{{ false }}" bindchange="handleInput" use-button-slot autosize>
+        <van-button slot="button" size="small" type="primary" bindtap="submitComment">
+          点击留言
+        </van-button>
+      </van-field>
+    </van-cell-group>
+  </view>
+
   <view class="block">
   </view>
 
