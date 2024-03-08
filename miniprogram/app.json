@@ -41,7 +41,9 @@
     "pages/order/order",
     "pages/detail/detail",
     "pages/upload1/upload1",
-    "pages/points/points"    
+    "pages/points/points",
+    "pages/reserve/reserve"    
+
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
