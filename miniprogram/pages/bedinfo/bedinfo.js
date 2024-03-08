@@ -56,7 +56,7 @@ Page({
   queryComments(bedId) {
     db.collection('comment').where({
       bedId: bedId // 确保留言数据中有 bedId 字段关联到床铺
-    }).get({
+    }).limit(15).get({
       success: res => {
         this.setData({
           comments: res.data
@@ -72,7 +72,8 @@ Page({
       content: e.detail, // 更新页面数据，保存用户输入的评论内容
     });
   },
-  submitComment() {
+
+  submitComment(event) {
     if (this.data.content.trim() === '') {
       wx.showToast({
         title: '留言内容不能为空',
@@ -80,7 +81,27 @@ Page({
       });
       return;
     }
+    const rId = event.currentTarget.dataset.idId;
+    console.log(rId)
     const db = wx.cloud.database();
+    db.collection('User').where({
+      _id: rId
+    }).get({
+      success: res => {
+        console.log(res.data[0])
+        const temp = res.data[0]
+        console.log(temp.avatarUrl)
+        this.setData({
+          owner: temp
+        });
+        console.log(this.data.owner)
+        this.sub()
+      },
+    });
+  },
+
+  sub() {
+    console.log(this.data.owner)
     db.collection('comment').add({
       data: {
         content: this.data.content,
@@ -88,7 +109,10 @@ Page({
         userId: this.data.userId,
         userName: this.data.userName,
         avatarUrl: this.data.avatarUrl,
-        bedId: this.data.bedId
+        avatarUrl2: this.data.owner.avatarUrl,
+        bedId: this.data.bedId,
+        receiverId: this.data.bedinfo.ownerId,
+        receiverName: this.data.bedinfo.ownerName,
       },
       success: res => {
         wx.showToast({
