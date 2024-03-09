@@ -4,6 +4,7 @@ const db = wx.cloud.database();
 Page({
 
   data: {
+    userData: [], //存放用户数据
     bedData: [], // 存放床源数据
     
 
@@ -26,8 +27,24 @@ Page({
   },
 
   onLoad(options) {
+    this.GetUserData();
+
     this.GetBedData();
     
+  },
+  
+  GetUserData(){
+    db.collection('User').get({
+      success: (resUser) => {
+        console.log('查询用户成功，所有数据：', resUser.data);
+        this.setData({
+          userData: resUser.data,
+        });
+      },
+      fail: (err) => {
+        console.error('查询用户失败：', err);
+      },
+    });
   },
 
   GetBedData(){
@@ -41,6 +58,19 @@ Page({
       fail: (err) => {
         console.error('查询床源失败：', err);
       },
+    });
+  },
+
+  showUserDetail(event) {
+    const that = this;
+
+    const index = event.currentTarget.dataset.index;
+    const userInfo = this.data.userData[index];
+
+    wx.showModal({
+      title: '用户详细信息',
+      content: `用户-${userInfo.User_name}  密码-${userInfo.passWord} 电话-${userInfo.phone}`,      
+      showCancel: false,
     });
   },
 

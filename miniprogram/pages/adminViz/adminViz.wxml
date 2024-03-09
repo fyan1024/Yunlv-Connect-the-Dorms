@@ -2,7 +2,14 @@
 <van-tabs active="{{ active }}" bind:change="onChange">
   
   <van-tab title="用户展示">
-    
+    <view class="user-item" wx:for="{{ userData }}" wx:key="index" bindtap="showUserDetail" data-index="{{ index }}">
+      <image class="user-image" src="{{ item.avatarUrl }}"></image>
+      <view class="user-info">
+        <view class="user-username">{{ item.User_name }}</view>
+        <view class="user-password">密码：{{ item.passWord }}</view>
+        <view class="user-student">学生身份：{{ item.Is_student ? '已验证' : '未验证' }}</view>
+      </view>
+    </view>
   </van-tab>
 
   <van-tab title="床源展示">
