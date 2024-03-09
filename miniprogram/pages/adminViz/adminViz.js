@@ -4,9 +4,9 @@ const db = wx.cloud.database();
 Page({
 
   data: {
-    userData: [], //存放用户数据
-    bedData: [], // 存放床源数据
-    
+    userData: [], //存放所有用户数据
+    bedData: [], // 存放所有床源数据
+    orderData: [], //存放所有订单数据
 
 
   },
@@ -28,11 +28,23 @@ Page({
 
   onLoad(options) {
     this.GetUserData();
-
     this.GetBedData();
-    
+    this.GetOrderData();
+
   },
-  
+  GetOrderData(){
+    db.collection('Order').get({
+      success: (resOrder) => {
+        console.log('查询用户成功，所有数据：', resOrder.data);
+        this.setData({
+          orderData: resOrder.data,
+        });
+      },
+      fail: (err) => {
+        console.error('查询用户失败：', err);
+      },
+    });
+  },
   GetUserData(){
     db.collection('User').get({
       success: (resUser) => {
@@ -121,6 +133,13 @@ Page({
         longitude: longitude,
         name: address,
         scale: 18 // 可选，缩放级别，默认为18，范围从5~18
+    });
+  },
+  goToOrderDetail(event) {
+    const orderId = event.currentTarget.dataset.orderId;
+    console.log(orderId)
+    wx.navigateTo({
+      url: `/pages/detail/detail?id=${orderId}`,
     });
   },
 

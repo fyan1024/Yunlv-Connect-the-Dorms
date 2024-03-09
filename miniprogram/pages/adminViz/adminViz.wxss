@@ -26,6 +26,11 @@
   vertical-align: middle; /* 垂直居中对齐 */
 }
 
+.user-university {
+  font-size: 10px;
+  color: #666; 
+}
+
 .user-password {
   font-size: 10px;
   color: #666; 
