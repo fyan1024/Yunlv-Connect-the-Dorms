@@ -9,6 +9,7 @@
       <van-cell title="地址" value="{{bedinfo.address}}" />
       <van-cell title="房间号" value="{{bedinfo.dormitory_num}}" />
       <van-cell title="床号" value="{{bedinfo.bed_num}}" />
+      <van-cell title="房主" value="{{bedinfo.ownerName}}" />
       <van-cell title="宣传语" value="{{bedinfo.announcements}}" />
     </van-cell-group>
   </view>
