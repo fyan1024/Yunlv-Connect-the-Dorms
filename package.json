@@ -4,9 +4,8 @@
   "description": "这是云开发的快速启动指引，其中演示了如何上手使用云开发的三大基础能力：",
   "main": ".eslintrc.js",
   "scripts": {
-    "test": "test"
+    "test": "jest"
   },
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "@vant/weapp": "^1.11.4",
@@ -15,5 +14,10 @@
   "devDependencies": {
     "jest": "^29.7.0",
     "miniprogram-simulate": "^1.6.1"
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/miniprogram/__mock__/wx.js"
+    ]
   }
 }
