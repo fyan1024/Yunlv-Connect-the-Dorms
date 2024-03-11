@@ -72,8 +72,10 @@ Page({
   /* 收藏 */
   collected() {
     const db = wx.cloud.database()
+
     db.collection('save').where({
-      bedId: this.data.bedId
+      bedId: this.data.bedId,
+      userId: this.data.userId
     }).get({
       success: res => {
         if (res.data.length > 0) {
@@ -272,8 +274,8 @@ Page({
   },
 
   onClickIcon2(event) {
-    const userId = event.currentTarget.dataset.user2Id;
-    console.log(userId)
+    const userId = event.currentTarget.dataset.name;
+    console.log("userId",userId)
     wx.navigateTo({
       url: `/pages/save/save?id=${userId}`,
     });
