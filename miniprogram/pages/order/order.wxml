@@ -46,6 +46,10 @@
           <view class="order-item" wx:for="{{dataObj}}" wx:key="index">
             <block wx:if="{{item.status === 'returned'&& userId === item.User_id}}">
               <van-card class="order-card" tag="{{item.university}}" desc="{{item.time}}" title="床位号：{{item.Bed_id}}" thumb="{{ item.picture_add }}" data-order-id="{{item._id}}" catchtap="goToDetail">
+                <view slot="footer" style="display: flex; justify-content: flex-end;">
+                  <van-button size="mini" data-order-id="{{item._id}}" catchtap="appealReport" wx:if="{{item.Is_success === true}}">请申诉
+                  </van-button>
+                </view>
               </van-card>
             </block>
           </view>

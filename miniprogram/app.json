@@ -38,7 +38,6 @@
     "pages/home/home",
     "pages/index/index",
     "pages/login/login",
-    "pages/sign/sign",
     "pages/comment/comment",
     "pages/comment/detail",
     "pages/my/my",
