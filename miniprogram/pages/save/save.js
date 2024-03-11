@@ -20,26 +20,29 @@ Page({
     this.setData({
       userId: userId
     })
-    this.getBedIds();
+    this.getBedIds(userId);
   },
-  getBedIds: function () {
+  getBedIds: function (userId) {
     const db = wx.cloud.database();
-    const that = this
-    db.collection('save').get().then(res => {
+    const that = this;
+    db.collection('save').where({
+      userId: userId
+    }).get().then(res => {
       if (res.data.length > 0) {
-        console.log(res.data)
+        console.log(res.data);
         const bedIds = res.data.map(item => item.bedId);
         // 获取床铺信息并展示
-        console.log("bedIds", bedIds)
+        console.log("bedIds", bedIds);
         that.setData({
           beds: bedIds
-        })
+        });
         that.getBedsInfo(bedIds);
       }
     }).catch(err => {
       console.error('获取bedId失败：', err);
     });
   },
+
 
   // 根据bedId查询bed表中的床铺信息并展示
   getBedsInfo: function (bedIds) {
@@ -53,7 +56,7 @@ Page({
     }).catch(err => {
       console.error('查询床铺信息失败：', err);
     });
-    console.log("beds",this.data.beds)
+    console.log("beds", this.data.beds)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
