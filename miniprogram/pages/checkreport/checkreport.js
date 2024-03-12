@@ -210,6 +210,137 @@ Page({
     });
   },
 
+  reviewAppeal(event){
+    const orderId = event.currentTarget.dataset.orderId;
+    console.log(orderId);
+  
+    // 查询 Order 表中的对应记录
+    db.collection('Order').doc(orderId).get({
+      success: orderRes => {
+        const orderData = orderRes.data;
+        const isAPPreview = orderData.Is_appreview;
+  
+        if (isAPPreview) {
+          // 如果订单已经被审核
+          wx.showToast({
+            title: '该上诉已被审核',
+            icon: 'none',
+            duration: 2000
+          });
+        } else {
+          // 如果订单未被审核，弹出选择举报结果的弹窗
+          wx.showModal({
+            title: '上诉内容详情',
+            content: orderData.Appeal,
+            showCancel: true,
+            cancelText: '不通过',
+            confirmText: '成功',
+            success: modalRes => {
+              if (modalRes.confirm) {
+                db.collection('Order').doc(orderId).update({
+                  data: {
+                    Is_appreview: true,
+                    Is_appsuccess: true
+                  },
+                  success: updateRes => {
+                      console.log('上诉成功');
+                      // 查询订单表，获取用户 ID
+                      db.collection('Order').doc(orderId).get({
+                          success: orderRes => {
+                              const orderData = orderRes.data;
+                              const userId = orderData.User_id;
+              
+                              // 使用用户 ID 查询用户表，获取用户的 Points
+                              db.collection('User').where({
+                                      _id: userId
+                              }).get({
+                                  success: userRes => {
+                                      const userData = userRes.data[0];
+                                      const userPoints = userData.Points;
+              
+                                      // 将用户的 Points 加上 100
+                                      const newPoints = userPoints + 5;
+                                      console.log(newPoints)
+              
+                                      // 更新用户表中对应用户的 Points
+                                      db.collection('User').doc(userData._id).update({
+                                          data: {
+                                              Points: newPoints
+                                          },
+                                          success: updatePointsRes => {
+                                              console.log('用户 Points 更新成功');
+                                          },
+                                          fail: updatePointsErr => {
+                                              console.error('用户 Points 更新失败：', updatePointsErr);
+                                          }
+                                      });
+                                  },
+                                  fail: userErr => {
+                                      console.error('查询用户信息失败：', userErr);
+                                  }
+                              });
+                          },
+                          fail: orderErr => {
+                              console.error('查询订单信息失败：', orderErr);
+                          }
+                      });
+              
+                      wx.showToast({
+                          title: '上诉成功',
+                          icon: 'success',
+                          duration: 2000
+                      });
+                  },
+                  fail: updateErr => {
+                      console.error('上诉成功但更新记录失败：', updateErr);
+                      wx.showToast({
+                          title: '更新记录失败',
+                          icon: 'none',
+                          duration: 2000
+                      });
+                  }
+              });
+              } else if (modalRes.cancel) {
+                // 用户选择上诉不通过
+                db.collection('Order').doc(orderId).update({
+                  data: {
+                    Is_appreview: true,
+                    Is_appsuccess: false
+                  },
+                  success: updateRes => {
+                    console.log('上诉不通过');
+                    wx.showToast({
+                      title: '上诉不通过',
+                      icon: 'none',
+                      duration: 2000
+                    });
+                  },
+                  fail: updateErr => {
+                    console.error('上诉不通过但更新记录失败：', updateErr);
+                    wx.showToast({
+                      title: '更新记录失败',
+                      icon: 'none',
+                      duration: 2000
+                    });
+                  }
+                });
+              }
+            }
+          });
+          // 监听模态框关闭事件
+        }
+      },
+      fail: orderErr => {
+        console.error('查询订单信息失败：', orderErr);
+        wx.showToast({
+          title: '查询订单信息失败',
+          icon: 'none',
+          duration: 2000
+        });
+      }
+    });
+  },
+
   getPoints(orderid){
     db.collection('Order').where({
       _id: orderid

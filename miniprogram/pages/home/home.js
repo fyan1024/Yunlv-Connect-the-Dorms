@@ -28,7 +28,7 @@ Page({
       .then(res => {
         // 处理后台返回的商品信息
         const allProducts = res.data;
-        console.log("allProducts: ", allProducts);
+        // console.log("allProducts: ", allProducts);
 
         // 2. 查询收藏表中每个商品被收藏的数量
         const promises = allProducts.map(bed => {
@@ -38,9 +38,9 @@ Page({
             })
             .count()
             .then(res => {
-              console.log("res", res);
+              // console.log("res", res);
               bed.collect_num = res.total;
-              console.log(bed)
+              // console.log(bed)
               return bed;
             });
         });
@@ -57,7 +57,7 @@ Page({
             this.setData({
               topProducts: topProducts
             });
-            console.log(topProducts);
+            // console.log(topProducts);
           })
           .catch(error => {
             console.error('获取商品收藏数失败', error);
@@ -82,7 +82,7 @@ Page({
 
   goToDetail(event) {
     const bedsId = event.currentTarget.dataset.bedsId;
-    console.log(bedsId)
+    // console.log(bedsId)
     wx.navigateTo({
       url: `/pages/bedinfo/bedinfo?id=${bedsId}`,
     });
