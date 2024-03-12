@@ -20,18 +20,9 @@
 
 # Yunlv-Connect-the-Dorms
 
+### [管理员端：Yunlv-Admin](https://github.com/fyan1024/Yunlv-Admin) 
+
 ## 开发计划
-
-> Doing:
-> - [ ] 积分功能
-> - [ ] 聊天功能
-> - [ ] 地点提示功能
-> - [ ] 学生认证
-> - [ ] 界面美化
-
-> Todo: 
-> - [ ] 预订（交易）和收藏
-> - [ ] 管理员端
 
 ---
 
