@@ -253,6 +253,8 @@ Page({
         ownerName:that.data.user.User_name,
         longitude: longitude,
         latitude: latitude,
+
+        Is_checked: false,
       },
       success: res => {
         // 添加成功后的处理
