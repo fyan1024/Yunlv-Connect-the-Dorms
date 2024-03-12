@@ -74,22 +74,47 @@ Page({
   },
 
   onLoad(options) {
+    this.UpdateBeds();
     this.GetAllBedData();
     this.FilterBeds();
   },
+  
+  UpdateBeds() {  
+    db.collection('Bed').get({
+      success: res => {
+        res.data.forEach(item => {
+          let city = item.city;
+          if (!city.endsWith('市')) {
+            city += '市';
+            db.collection('Bed').doc(item._id).update({
+              data: {
+                city: city
+              },
+              success: res => console.log('记录更新成功', res),
+              fail: err => console.error('记录更新失败', err)
+            });
+          }
+        });
+      },
+      fail: err => console.error('查询失败', err)
+    });
+  },
+
 
   goToDetail(event) {
     const bedsId = event.currentTarget.dataset.bedidsId;
-    console.log(bedsId)
+    console.log("Goto ", bedsId, " Info Page ")
     wx.navigateTo({
       url: `/pages/bedinfo/bedinfo?id=${bedsId}`,
     });
   },
 
+  
+
   GetAllBedData() {
     db.collection('Bed').orderBy('likes_num', 'desc').get({
       success: (res) => {
-        console.log('查询成功，所有数据：', res.data);
+        // console.log('查询成功，所有数据：', res.data);
 
         const cityoptions = res.data.map((bed) => bed.city);
         const uniquecityOptions = Array.from(new Set(cityoptions));
@@ -99,11 +124,11 @@ Page({
         const uniquebusyOptions = Array.from(new Set(busyoptions)).map(option => option ? "占用" : "空闲");
 
         console.log('查询所有城市选项：', cityoptions);
-        console.log('写入城市选项：', uniquecityOptions);
-        console.log('查询所有状态选项：', busyoptions);
-        console.log('写入状态选项：', uniquebusyOptions);
-        console.log('查询所有学校选项：', univoptions);
-        console.log('写入学校选项：', uniqueunivOptions);
+        // console.log('写入城市选项：', uniquecityOptions);
+        // console.log('查询所有状态选项：', busyoptions);
+        // console.log('写入状态选项：', uniquebusyOptions);
+        // console.log('查询所有学校选项：', univoptions);
+        // console.log('写入学校选项：', uniqueunivOptions);
 
         this.setData({
           beds: res.data,
@@ -132,7 +157,7 @@ Page({
         showCityPicker: false,
         selectedCity: "",
       }),
-      console.log('是否写入选择的城市 selectedCity : ', this.data.selectedCity)
+      // console.log('是否写入选择的城市 selectedCity : ', this.data.selectedCity)
     this.FilterBeds();
   },
 
@@ -141,7 +166,7 @@ Page({
       selectedCity: event.detail.value,
       showCityPicker: false,
     });
-    console.log('是否写入选择的城市 selectedCity : ', this.data.selectedCity)
+    // console.log('是否写入选择的城市 selectedCity : ', this.data.selectedCity)
     this.FilterBeds();
   },
 
@@ -156,7 +181,7 @@ Page({
         showUnivPicker: false,
         selectedUniv: "",
       }),
-      console.log('是否写入选择的大学 selectedUniv: ', this.data.selectedUniv)
+      // console.log('是否写入选择的大学 selectedUniv: ', this.data.selectedUniv)
     this.FilterBeds();
   },
 
@@ -165,7 +190,7 @@ Page({
       selectedUniv: event.detail.value,
       showUnivPicker: false,
     });
-    console.log('是否写入选择的大学 selectedUniv: ', this.data.selectedUniv)
+    // console.log('是否写入选择的大学 selectedUniv: ', this.data.selectedUniv)
     this.FilterBeds();
   },
 
@@ -180,7 +205,7 @@ Page({
         showBusyPicker: false,
         selectedBusy: "",
       }),
-      console.log('是否写入选择的状态 selectedBusy : ', this.data.selectedBusy)
+      // console.log('是否写入选择的状态 selectedBusy : ', this.data.selectedBusy)
     this.FilterBeds();
   },
 
@@ -192,7 +217,7 @@ Page({
       selectedBusy: event.detail.value,
       // selectedBusy: selectedBusy ? true : false,
     });
-    console.log('是否写入选择的状态 selectedBusy : ', this.data.selectedBusy)
+    // console.log('是否写入选择的状态 selectedBusy : ', this.data.selectedBusy)
     this.FilterBeds();
   },
 
@@ -217,7 +242,7 @@ Page({
 
       return cityCondition && busyCondition && univCondition;
     });
-    console.log('查询到的 filteredBeds 值: ', filteredBeds)
+    // console.log('查询到的 filteredBeds 值: ', filteredBeds)
 
     this.setData({
       filteredBeds,
