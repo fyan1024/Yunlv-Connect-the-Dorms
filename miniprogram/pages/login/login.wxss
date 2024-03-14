@@ -10,7 +10,8 @@ Page {
 .introduce_box .title{
   font-weight: bold;
   font-size: 20pt;
-  background-color: #fff;margin-bottom: 10rpx;
+  background-color: rgba(180, 218, 253, 0.795);
+  margin-bottom: 10rpx;
 }
 .introduce_box .detail{
   color: #7f7f7f;

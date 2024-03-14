@@ -39,7 +39,7 @@ page{
 
 .view_contain {
   width: 100%;
-  background: rgba(250, 231, 179, 0.795)
+  background: rgba(180, 218, 253, 0.795)
 }
 
 .view_block {
@@ -47,7 +47,7 @@ page{
   margin-left: 5%;
   /* margin-top: 40%; */
   margin-bottom: 20%;
-  background: rgba(250, 231, 179, 0.795)
+  background: rgba(180, 218, 253, 0.795)
 }
 
 .display-frame {
