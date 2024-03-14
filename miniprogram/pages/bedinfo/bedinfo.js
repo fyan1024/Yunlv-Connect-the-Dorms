@@ -48,7 +48,6 @@ Page({
           bedinfo: bedinfo,
           bedId: bedinfo._id
         }, () => {
-          // 使用 setData 的回调函数确保数据已被设置
           this.Univ2Location(); 
         });
         console.log("床铺ID", bedinfo._id)
@@ -60,14 +59,9 @@ Page({
         console.error('获取商品信息失败', error);
       }
     );
-    // /* 收藏功能 */
-    // this.collected();
+
 
   },
-
-  // collected() {
-
-  
 
   /* 收藏 */
   collected() {
@@ -190,13 +184,9 @@ Page({
  Univ2Location() {
   var _this = this;
   var allMarkers = [];
-  
-  // 直接从this.data.bedinfo获取单个位置信息
-  var bedinfo = this.data.bedinfo;
-  
-  console.log("Loading Univ2Location");
-  console.log(bedinfo.address + "," + bedinfo.latitude + "," + bedinfo.longitude);
-  
+  var bedinfo = this.data.bedinfo; 
+  // console.log("Loading Univ2Location");
+  // console.log(bedinfo.address + "," + bedinfo.latitude + "," + bedinfo.longitude);
   // 创建一个基于bedinfo信息的marker
   const marker = {
     id: 0, // 由于只有一个marker，id设置为0
@@ -204,15 +194,19 @@ Page({
     longitude: bedinfo.longitude,
     width: 50,
     height: 50,
+    iconPath: bedinfo.picture_add, // 自定义图标的路径
     callout: {
       content: bedinfo.address,
       display: 'ALWAYS',
       fontSize: 14,
-      bgColor: "#ffffff",
+      bgColor: "#FFF8DC",
       padding: 10,
-      borderRadius: 5,
-      borderWidth: 1,
-      borderColor: "#cccccc"
+      borderRadius: 10, // 增加圆角
+      // borderRadius: 5,
+      // borderWidth: 1,
+      borderWidth: 2,
+      borderColor: "#FF4500" // 修改边框颜色
+      // borderColor: "#cccccc"
     }
   };
   allMarkers.push(marker);

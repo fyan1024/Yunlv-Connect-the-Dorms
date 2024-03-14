@@ -39,7 +39,7 @@
             </van-col>
             <van-col span="4">
               <view class="like-info">
-                <van-icon name="like-o" color='red' size="20px" info="{{item.likes_num}}" />
+                <van-icon name="star-o" color='red' size="20px" info="{{item.collect_num}}" />
               </view>
             </van-col>
           </view>

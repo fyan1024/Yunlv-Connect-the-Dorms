@@ -64,8 +64,7 @@ Page({
     const user = this.data.user;
     if (user.Is_student == false) {
       wx.showModal({
-        title: '请输入数据',
-        content: '请在下方输入框中输入数据',
+        title: '请输入学信网认证代码',
         showCancel: true,
         editable: true,
         success: function (res) {

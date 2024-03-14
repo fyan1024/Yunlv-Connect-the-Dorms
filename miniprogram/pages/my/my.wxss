@@ -64,6 +64,7 @@ page {
   text-align: center;
   color: #7f7f7f;
   font-size: 10pt;
+  margin-bottom: 60rpx;
 }
 
 .grid {

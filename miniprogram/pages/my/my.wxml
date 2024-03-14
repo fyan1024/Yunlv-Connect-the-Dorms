@@ -19,8 +19,8 @@
         </view>
         <view class="uname">
           <text>{{user.User_name}}</text>
-          <text>{{user.Points}}</text>
-          <van-tag round type="w arning" wx:if="{{user.Is_student==true}}" bindtap="idenfy">学生身份</van-tag>
+          <!-- <text>{{user.Points}}</text> -->
+          <van-tag round type="warning" wx:if="{{user.Is_student==true}}" bindtap="idenfy">学生身份</van-tag>
           <van-tag round wx:if="{{user.Is_student==false}}" bindtap="idenfy">学生身份</van-tag>
         </view>
       </view>
