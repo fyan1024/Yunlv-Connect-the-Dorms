@@ -437,6 +437,109 @@ Page({
     });
   },
 
+  appealReport(event){
+    const orderId = event.currentTarget.dataset.orderId;
+    console.log(orderId);
+  
+    // 查询 Order 表对应订单的 Is_report, Is_reviewed 和 Is_success 字段
+    db.collection('Order').doc(orderId).get({
+      success: orderRes => {
+        const orderData = orderRes.data;
+        const isAppeal = orderData.Is_appeal;
+        const isAppsuccess = orderData.Is_appsuccess;
+        const isAppreview = orderData.Is_appreview;
+        if (isAppeal) {
+          if (isAppreview) {
+            if (isAppsuccess) {
+              wx.showToast({
+                title: '订单已申诉成功',
+                icon: 'success',
+                duration: 2000
+              });
+            } else {
+              wx.showToast({
+                title: '申诉不通过',
+                icon: 'none',
+                duration: 2000
+              });
+            }
+          } else {
+            wx.showToast({
+              title: '待审核',
+              icon: 'none',
+              duration: 2000
+            });
+          }
+        } else {
+          // 弹出填写相关信息的弹窗
+          wx.showModal({
+            title: '填写申诉信息',
+            content: '请填写申诉信息',
+            showCancel: true,
+            confirmText: '确定',
+            cancelText: '取消',
+            editable: true,
+            success: modalRes => {
+              if (modalRes.confirm) {
+                // 用户点击确定，更新 Order 表的 Appeal 字段和 Is_appeal 字段
+                const reportContent = modalRes.content;
+                db.collection('Order').doc(orderId).update({
+                  data: {
+                    Appeal: reportContent,
+                    Is_appeal: true
+                  },
+                  success: updateRes => {
+                    console.log('申诉信息填写成功');
+                    wx.showToast({
+                      title: '申诉信息已填写',
+                      icon: 'success',
+                      duration: 2000
+                    });
+                  },
+                  fail: updateErr => {
+                    console.error('申诉信息填写失败:', updateErr);
+                    wx.showToast({
+                      title: '申诉信息填写失败',
+                      icon: 'none',
+                      duration: 2000
+                    });
+                  }
+                });
+              } else if (modalRes.cancel) {
+                // 用户点击取消，清空 Report 字段和 Is_report 字段
+                db.collection('Order').doc(orderId).update({
+                  data: {
+                    Appeal: '',
+                    Is_appeal: false
+                  },
+                  success: updateRes => {
+                    console.log('取消填写申诉信息');
+                    wx.showToast({
+                      title: '已取消填写',
+                      icon: 'success',
+                      duration: 2000
+                    });
+                  },
+                  fail: updateErr => {
+                    console.error('取消填写申诉信息失败:', updateErr);
+                    wx.showToast({
+                      title: '取消填写失败',
+                      icon: 'none',
+                      duration: 2000
+                    });
+                  }
+                });
+              }
+            }
+          });
+        }
+      },
+      fail: orderErr => {
+        console.error('查询订单信息失败：', orderErr);
+      }
+    });
+  },
+
 
   // returnOrder(event) {
   //   // const that = this

@@ -4,8 +4,9 @@ const db = wx.cloud.database();
 Page({
 
   data: {
-    bedData: [], // 存放床源数据
-    
+    userData: [], //存放所有用户数据
+    bedData: [], // 存放所有床源数据
+    orderData: [], //存放所有订单数据
 
 
   },
@@ -26,8 +27,36 @@ Page({
   },
 
   onLoad(options) {
+    this.GetUserData();
     this.GetBedData();
-    
+    this.GetOrderData();
+
+  },
+  GetOrderData(){
+    db.collection('Order').get({
+      success: (resOrder) => {
+        console.log('查询用户成功，所有数据：', resOrder.data);
+        this.setData({
+          orderData: resOrder.data,
+        });
+      },
+      fail: (err) => {
+        console.error('查询用户失败：', err);
+      },
+    });
+  },
+  GetUserData(){
+    db.collection('User').get({
+      success: (resUser) => {
+        console.log('查询用户成功，所有数据：', resUser.data);
+        this.setData({
+          userData: resUser.data,
+        });
+      },
+      fail: (err) => {
+        console.error('查询用户失败：', err);
+      },
+    });
   },
 
   GetBedData(){
@@ -41,6 +70,19 @@ Page({
       fail: (err) => {
         console.error('查询床源失败：', err);
       },
+    });
+  },
+
+  showUserDetail(event) {
+    const that = this;
+
+    const index = event.currentTarget.dataset.index;
+    const userInfo = this.data.userData[index];
+
+    wx.showModal({
+      title: '用户详细信息',
+      content: `用户-${userInfo.User_name}  密码-${userInfo.passWord} 电话-${userInfo.phone}`,      
+      showCancel: false,
     });
   },
 
@@ -91,6 +133,13 @@ Page({
         longitude: longitude,
         name: address,
         scale: 18 // 可选，缩放级别，默认为18，范围从5~18
+    });
+  },
+  goToOrderDetail(event) {
+    const orderId = event.currentTarget.dataset.orderId;
+    console.log(orderId)
+    wx.navigateTo({
+      url: `/pages/detail/detail?id=${orderId}`,
     });
   },
 

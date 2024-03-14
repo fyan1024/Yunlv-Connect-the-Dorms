@@ -25,10 +25,10 @@
   </view>
 
   <!-- 用户前往注册页面 -->
-  <view class="sign">
+  <!-- <view class="sign">
     <view class="title">没有账号?</view>
     <view bindtap="go_sign" class="go_sign">注册</view>
-  </view>
+  </view> -->
 
   <!-- 版本信息 -->
   <view class="versign_box">

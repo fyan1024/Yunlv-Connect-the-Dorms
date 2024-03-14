@@ -28,6 +28,7 @@
                 <view slot="footer" style="display: flex; justify-content: flex-end;">
                   <van-button size="mini" data-order-id="{{item._id}}" catchtap="viewDetails">查看详情</van-button>
                   <van-button size="mini" data-order-id="{{item._id}}" catchtap="reviewReport">审核举报</van-button>
+                  <van-button size="mini" data-order-id="{{item._id}}" catchtap="reviewAppeal" wx:if="{{item.Is_appeal === true}}">审核上诉</van-button>
                 </view>
               </van-card>
             </block>
