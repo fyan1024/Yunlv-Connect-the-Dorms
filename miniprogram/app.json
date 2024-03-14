@@ -35,9 +35,10 @@
 
   },
   "pages": [
+    "pages/login/login",
+
     "pages/home/home",
     "pages/index/index",
-    "pages/login/login",
     "pages/comment/comment",
     "pages/comment/detail",
     "pages/my/my",

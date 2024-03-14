@@ -1,7 +1,7 @@
 /* pages/upload/upload.wxss */
 /* pages/sign/sign.wxss */
 Page{
-  background: rgba(180, 218, 253, 0.795);
+  background: rgba(230, 234, 238, 0.795);
 
 }
 .avatar_box{

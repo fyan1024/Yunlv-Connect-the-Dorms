@@ -16,7 +16,9 @@
 </van-cell-group>
 
 <!-- 当点击开始查询地点时调用 Popup for showing search results -->
-<button bindtap="initiateLocateSearch">开始查询地址</button>
+
+<van-button  type="primary" round size="normal" form-type="submit" bindtap="initiateLocateSearch" style="width: 232rpx; height: 88rpx; display: block; box-sizing: border-box; left: 260rpx; top: 30rpx; position: relative">开始查询地址</van-button>
+
 <van-popup show="{{showLocateSearchPicker}}" position="bottom" bind:close="onLocateClosePopup">
   <view>
     <view wx:for="{{searchResults}}" wx:key="id" bindtap="onLocateSelectOption" data-id="{{item.id}}">
@@ -45,10 +47,10 @@
 </view>
 
 <view>
-  <van-col span="8" offset="3">
+  <van-col span="8" offset="5">
     <van-button plain type="primary" size="normal" form-type="submit" bindtap="uploadcontent">提交</van-button>
   </van-col>
-  <van-col span="8" offset="3">
+  <van-col span="8" offset="2">
     <van-button plain type="info" size="normal" bindtap="cancelsub">取消</van-button>
   </van-col>
 </view>
