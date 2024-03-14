@@ -15,21 +15,14 @@
   </view>
 
   <!-- 纬度在前，经度在后 -->
-  <map id="map"
-    class="map"
-    markers="{{markers}}"
-    longitude="{{longitude}}" latitude="{{latitude}}"
-    style="width:100%;height: 500rpx;"
-    scale="{{scale}}"
-    bindmarkertap="onMarkerTap">
+  <map id="map" class="map" markers="{{markers}}" longitude="{{longitude}}" latitude="{{latitude}}" style="width:100%;height: 500rpx;" scale="{{scale}}" bindmarkertap="onMarkerTap">
   </map>
 
-  <view class="other-info">
-    <van-grid>
-      <van-grid-item icon="contact-o" text="房主：" />
-      <van-grid-item icon="star-o" text="评分：{{bedinfo.rate}}" />
-      <van-grid-item icon="photo-o" text="文字" />
-      <van-grid-item icon="photo-o" text="文字" />
+  <view class="otherinfo">
+    <van-grid column-num="3">
+      <van-grid-item icon="contact-o" text="房主：{{bedinfo.ownerName}}" />
+      <van-grid-item icon="clock-o" text="开始日期：{{bedinfo.start_time}}" />
+      <van-grid-item icon="clock" text="截止日期：{{bedinfo.deadline}}" />
     </van-grid>
   </view>
 
@@ -56,11 +49,11 @@
 
   <van-goods-action>
     <van-goods-action-icon icon="{{isCollected?'like' : 'like-o' }}" text="{{isCollected?'已收藏':'未收藏'}}" bind:click="onClickIcon1" />
-    <van-goods-action-icon icon="cart-o" text="我的收藏" bind:click="onClickIcon2" data-name="{{userId}}"/>
+    <van-goods-action-icon icon="cart-o" text="我的收藏" bind:click="onClickIcon2" data-name="{{userId}}" />
     <van-goods-action-button text="加入收藏" type="warning" bind:click="onClickButton1" data-bedId="{{bedId}}" disabled="{{isCollected}}" />
     <van-goods-action-button text="立即预定" bind:click="onClickButton2" data-bedId="{{bedId}}" />
   </van-goods-action>
-  
+
   <!-- <van-goods-action>
     <van-goods-action-icon icon="chat-o" text="联系床主" bind:click="onClickIcon1" />
     <van-goods-action-icon icon="cart-o" text="我的收藏" bind:click="onClickIcon2" />
