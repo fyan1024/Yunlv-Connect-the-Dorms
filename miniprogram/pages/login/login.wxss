@@ -1,6 +1,6 @@
 /* pages/login/login.wxss */
 Page {
-  background-color: #fff;
+  background-color:rgba(180, 218, 253, 0.795)
 }
 
 .login_box {

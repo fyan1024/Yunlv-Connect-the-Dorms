@@ -96,10 +96,14 @@ Page({
     const orderInfo = {
       // 假设的订单信息，根据实际需要进行调整
       Generation_time: new Date(), // 创建时间
-      Is_like: false,
+      Is_appreview: false,
+      Is_appsuccess: false,
+      Is_appeal: false,
+      Is_liked: false,
       Is_report: false,
       Is_reviewed: false,
       Is_success: false,
+      Is_busy: true,
       Bed_id: this.data.bedId,
       university: this.data.bedinfo.university,
       user_id: this.data.userId,
@@ -112,7 +116,8 @@ Page({
       data: orderInfo,
       success: function (res) {
         // 数据保存成功后的回调函数
-        that.updateBedStatus(bedId); // 调用更新床铺状态的方法
+        that.updateBedStatus(bedId); // 更新床铺状态
+        that.deductUserPoints(that.data.userId); // 扣除用户积分
         wx.showToast({
           title: '提交成功',
           icon: 'success',
@@ -120,9 +125,9 @@ Page({
         });
         setTimeout(() => {
           wx.navigateBack({
-            delta: 2 // 返回上一级页面，如果当前页面是通过 navigateTo 打开的，delta 设置为 1 即可
+            delta: 2
           });
-        }, 1500); // 这里的延时应与 showToast 的 duration 相匹配
+        }, 1500);
       },
       fail: function (err) {
         // 数据保存失败后的回调函数
@@ -131,6 +136,21 @@ Page({
           icon: 'none',
           duration: 2000
         });
+      }
+    });
+  },
+  deductUserPoints: function (userId) {
+    const db = wx.cloud.database();
+    const _ = db.command; // 获取数据库查询命令对象
+    db.collection('User').doc(userId).update({
+      data: {
+        Points: _.inc(-20) // 使用_.inc(-20)来扣除20积分
+      },
+      success: function (res) {
+        console.log('积分扣除成功');
+      },
+      fail: function (err) {
+        console.error('积分扣除失败', err);
       }
     });
   },

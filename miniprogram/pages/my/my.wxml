@@ -1,31 +1,34 @@
+<view class="personal-container">
 <view bindtap="cancle" class="cancle">退出登录</view>
-
 <van-tabbar active="{{ active }}" bind:change="onChange">
   <van-tabbar-item name="home" icon="home-o" url="/pages/home/home">首页</van-tabbar-item>
   <!-- <van-tabbar-item name="index" icon="search">标签</van-tabbar-item> -->
   <van-tabbar-item name="my" icon="friends-o" url="/pages/my/my">个人</van-tabbar-item>
 </van-tabbar>
-
-<view class="view_contain">
-  <!-- 第一部分 -->
-  <view wx:if="{{user}}">
-    <view class="view_1">
-      <view class="view_image_text">
+  <view class="bg-container">
+    <view class='bg-image'>
+      <image mode="aspectFill" src='cloud://cloud1-0g5krkkz1b2028bc.636c-cloud1-0g5krkkz1b2028bc-1324588702/imagesforpadding/myback.gif'  style="width: 750rpx; height: 570rpx; display: inline-block; box-sizing: border-box"></image>
+    </view>
+    
+    <!-- 第一部分 -->
+  <view wx:if="{{user}}" style="margin-top: -50px; width: 750rpx; height: 94rpx; display: block; box-sizing: border-box">
+    
+      <view class="view_image_text" style="width: 700rpx; height: 180rpx; display: flex; box-sizing: border-box; position: relative; left: -25rpx; top: -133rpx">
         <view>
           <van-image round width="5rem" height="5rem" src="{{user.avatarUrl}}" />
         </view>
         <view class="uname">
           <text>{{user.User_name}}</text>
-          <!-- <text>{{user.Points}}</text> -->
-          <van-tag round type="warning" wx:if="{{user.Is_student==true}}" bindtap="idenfy">学生身份</van-tag>
+          <text>{{user.Points}}</text>
+          <van-tag round type="w arning" wx:if="{{user.Is_student==true}}" bindtap="idenfy">学生身份</van-tag>
           <van-tag round wx:if="{{user.Is_student==false}}" bindtap="idenfy">学生身份</van-tag>
         </view>
       </view>
-    </view>
+  </view>
   </view>
   <view class="view2">
     <view class="view_info">
-      <van-cell-group inset title="个人信息" bindtap="fillinfo">
+      <van-cell-group inset title="个人信息" bindtap="fillinfo" style="position: relative; left: 0rpx; top: 0rpx">
         <van-row>
           <van-col span="8">
             <van-cell title="性别" value="{{user.User_gender}}" />
@@ -42,12 +45,30 @@
   </view>
   <view class="grid">
     <van-grid gutter="{{  }}">
-      <van-grid-item icon="photo-o" text="我的订单" data-user2-id="{{user._id}}" bindtap="goToOrder" />
-      <van-grid-item icon="photo-o" text="提到我的" data-user2-id="{{user._id}}" bindtap="goToComment" />
-      <van-grid-item icon="photo-o" text="我的积分" data-user3-id="{{user._id}}" bindtap="goToPoints" />
+      <van-grid-item icon="cart-o" text="我的订单" data-user2-id="{{user._id}}" bindtap="goToOrder" />
+      <van-grid-item icon="chat-o" text="提到我的" data-user2-id="{{user._id}}" bindtap="goToComment" />
+      <van-grid-item icon="like-o" text="我的积分" data-user3-id="{{user._id}}" bindtap="goToPoints" />
       <!-- <van-grid-item icon="photo-o" text="其他设置" /> -->
-      <van-grid-item icon="photo-o" text="我的收藏" data-user3-id="{{user._id}}" bindtap="goToSaves" />
+      <van-grid-item icon="star-o" text="我的收藏" data-user3-id="{{user._id}}" bindtap="goToSaves" />
     </van-grid>
   </view>
 
 </view>
+   <!-- <view class='content-container'>  -->
+<!--订单-->
+    <!-- <view class='content-item sale'  bindtap='goToOrder'>
+      <view class='word' style="width: 750rpx; height: 46rpx; display: block; box-sizing: border-box">我的订单</view>
+    </view> -->
+<!--评论-->
+    <!-- <view class='content-item say-love' bindtap="goToComment">
+      <view class='word'>提到我的</view>
+    </view> -->
+<!--积分-->
+    <!-- <view class='content-item say-love' style="width: 676rpx; height: 50rpx; display: block; box-sizing: border-box">
+      <view class='word'>我的积分</view>
+    </view> -->
+<!--其他设置-->
+    <!-- <view class='content-item sale' bindtap="openSaleList">
+      <view class='word'>其他设置</view>
+    </view> -->
+  <!-- </view> -->

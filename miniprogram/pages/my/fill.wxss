@@ -3,6 +3,5 @@
   position: fixed;
   width: 100%;
   bottom: 150rpx;
-  
-  background: rgba(52, 120, 247, 0);
+  background: rgba(180, 218, 253, 0.795);
 }
